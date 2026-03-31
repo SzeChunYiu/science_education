@@ -1024,10 +1024,12 @@ def storybook_comparison_split_scene(
         color=_STORYBOOK_INK,
         z=40,
     )
+    # Right caption enters after left caption's TypeWriter finishes (max 2.0s) + 0.5s buffer
+    right_caption_enter = int(1.0 * fps) + int(2.5 * fps)
     elements.append(_timeline_element(
         right_caption_el,
         total_frames,
-        enter_frame=int(1.2 * fps),
+        enter_frame=right_caption_enter,
         enter_anim=_text_reveal_anim(right_caption, fps, min_seconds=0.9, max_seconds=2.0, chars_per_second=20.0),
     ))
 
@@ -1045,10 +1047,12 @@ def storybook_comparison_split_scene(
             color=_STORYBOOK_INK,
             z=45,
         )
+        # Bridge enters after right caption's TypeWriter finishes
+        bridge_enter = right_caption_enter + int(2.5 * fps)
         elements.append(_timeline_element(
             bridge_text_el,
             total_frames,
-            enter_frame=int(1.4 * fps),
+            enter_frame=bridge_enter,
             enter_anim=_text_reveal_anim(bridge_text, fps, min_seconds=0.8, max_seconds=1.6, chars_per_second=24.0),
         ))
 
@@ -1419,7 +1423,7 @@ def character_introduction_scene(
     elements.append(ElementTimeline(
         element=char_el,
         enter_frame=0,
-        exit_frame=total_frames,
+        exit_frame=char_exit_frame,
         enter_anim=SlideIn(
             direction="left",
             duration_frames=char_enter_frames,
@@ -1448,8 +1452,9 @@ def character_introduction_scene(
     elements.append(ElementTimeline(
         element=name_el,
         enter_frame=int(0.5 * fps),
-        exit_frame=total_frames,
+        exit_frame=char_exit_frame,
         enter_anim=FadeIn(duration_frames=int(0.25 * fps), easing=ease_in_out),
+        exit_anim=FadeOut(duration_frames=int(0.4 * fps), easing=ease_in_out),
     ))
 
     if year:
@@ -1472,8 +1477,9 @@ def character_introduction_scene(
         elements.append(ElementTimeline(
             element=year_el,
             enter_frame=int(0.65 * fps),
-            exit_frame=total_frames,
+            exit_frame=char_exit_frame,
             enter_anim=FadeIn(duration_frames=int(0.2 * fps), easing=ease_in_out),
+            exit_anim=FadeOut(duration_frames=int(0.4 * fps), easing=ease_in_out),
         ))
 
     # Supporting quote as plain text in its own quieter column.
