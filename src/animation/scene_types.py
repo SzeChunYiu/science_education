@@ -1570,13 +1570,14 @@ def derivation_step_scene(
     total_frames = max(1, int(round(duration * fps)))
     elements: list[ElementTimeline] = []
 
-    # Previous equation — present from frame 0, no enter animation
+    # Previous equation — subordinate (already established), same rendering
+    # path as new_line so both use the math font at consistent visual weight.
     prev_el = _make_element(
-        role="headline",
+        role="equation_center",
         resolver=res,
         text=previous_line,
-        font_size=52,
-        color=(30, 30, 30),
+        font_size=44,          # smaller → visually subordinate
+        color=(200, 200, 200), # muted grey — already done, not the focus
     )
     _set_rect(prev_el, _planned_rect(layout_rects, "previous", _fractional_rect(canvas, 0.16, 0.14, 0.68, 0.12)))
     elements.append(ElementTimeline(
@@ -1586,13 +1587,13 @@ def derivation_step_scene(
         enter_anim=None,
     ))
 
-    # New equation line — slides in from below
+    # New equation line — hero of the scene: larger, bright, slides in
     new_el = _make_element(
         role="equation_center",
         resolver=res,
         text=new_line,
-        font_size=52,
-        color=(20, 70, 160),
+        font_size=60,           # larger → prominent
+        color=(255, 255, 255),  # bright white — the new derivation step
     )
     _set_rect(new_el, _planned_rect(layout_rects, "derivation", _fractional_rect(canvas, 0.18, 0.30, 0.64, 0.18)))
     new_enter = int(0.3 * fps)
@@ -1610,13 +1611,13 @@ def derivation_step_scene(
         hold_anims=[PulseOnce(peak_scale=1.05, duration_frames=int(0.3 * fps))],
     ))
 
-    # Annotation — fades in
+    # Annotation — cool accent colour, clearly distinct from both equations
     ann_el = _make_element(
         role="caption",
         resolver=res,
         text=annotation,
-        font_size=32,
-        color=(120, 80, 20),
+        font_size=30,
+        color=(160, 220, 255),  # light blue — pedagogical note
     )
     _set_rect(ann_el, _planned_rect(layout_rects, "annotation", _fractional_rect(canvas, 0.16, 0.68, 0.68, 0.10)))
     elements.append(ElementTimeline(
