@@ -200,6 +200,19 @@ def _text_reveal_anim(
     ])
 
 
+def _clip_on_screen(text: str, max_words: int = 10) -> str:
+    """
+    Slide-rule: on-screen text must be short like a PowerPoint bullet.
+    Full narration belongs in audio/subtitles; this just shows the key phrase.
+    """
+    if not text:
+        return text
+    words = text.split()
+    if len(words) <= max_words:
+        return text
+    return " ".join(words[:max_words]) + "…"
+
+
 def _equation_font_size(equation_text: str) -> int:
     """
     Keep equations visually strong without dwarfing the explanatory copy.
@@ -660,10 +673,12 @@ def storybook_hook_title_card_scene(
         enter_anim=_text_reveal_anim(title_text, fps, min_seconds=0.9, max_seconds=1.8, chars_per_second=18.0),
     ))
 
+    # Clip to slide-rule limit; enter only after title TypeWriter finishes (max 1.8s + 0.2s buffer)
+    subtitle_clipped = _clip_on_screen(subtitle_text, max_words=10)
     subtitle_text_el = _place_element(
         "body_text",
         subtitle_rect,
-        text=subtitle_text,
+        text=subtitle_clipped,
         font_size=38 if aspect_ratio == "16:9" else 30,
         color=_STORYBOOK_INK,
         z=40,
@@ -671,8 +686,8 @@ def storybook_hook_title_card_scene(
     elements.append(_timeline_element(
         subtitle_text_el,
         total_frames,
-        enter_frame=int(0.6 * fps),
-        enter_anim=_text_reveal_anim(subtitle_text, fps, min_seconds=1.0, max_seconds=2.4, chars_per_second=20.0),
+        enter_frame=int(2.0 * fps),
+        enter_anim=_text_reveal_anim(subtitle_clipped, fps, min_seconds=1.0, max_seconds=2.0, chars_per_second=20.0),
     ))
 
     if hero_asset:
@@ -796,10 +811,12 @@ def storybook_object_demo_scene(
         total_frames - int(0.95 * fps),
     ))
 
+    # Clip to slide-rule limit before element creation; enter after title TypeWriter (max 1.6s + 0.2s)
+    explanation_clipped = _clip_on_screen(explanation_text, max_words=12)
     explanation_text_el = _place_element(
         "caption",
         explanation_rect,
-        text=explanation_text,
+        text=explanation_clipped,
         font_size=32 if aspect_ratio == "16:9" else 28,
         color=_STORYBOOK_INK,
         z=40,
@@ -807,8 +824,8 @@ def storybook_object_demo_scene(
     elements.append(_timeline_element(
         explanation_text_el,
         total_frames,
-        enter_frame=int(1.0 * fps),
-        enter_anim=_text_reveal_anim(explanation_text, fps, min_seconds=1.0, max_seconds=2.2, chars_per_second=20.0),
+        enter_frame=int(1.8 * fps),
+        enter_anim=_text_reveal_anim(explanation_clipped, fps, min_seconds=1.0, max_seconds=2.0, chars_per_second=20.0),
     ))
 
     if callout_text:
@@ -820,10 +837,11 @@ def storybook_object_demo_scene(
             color=_STORYBOOK_INK,
             z=45,
         )
+        # Enter after explanation TypeWriter finishes (starts 1.8s, max 2.0s → 3.8s + 0.2s buffer)
         elements.append(_timeline_element(
             callout_text_el,
             total_frames,
-            enter_frame=int(1.6 * fps),
+            enter_frame=int(4.0 * fps),
             enter_anim=_text_reveal_anim(callout_text, fps, min_seconds=0.65, max_seconds=1.2, chars_per_second=24.0),
         ))
 
