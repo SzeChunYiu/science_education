@@ -526,8 +526,8 @@ def _build_character_scene_elements(
         }
     ]
     if cue:
-        # Use cue as lower-third label
-        label = cue[:80].strip()
+        # Use a short concept label for the lower-third (name, year, title)
+        label = _concept_label(cue, max_words=7)
         elements.append({
             "role":       "lower_third",
             "text":       label,
@@ -579,11 +579,11 @@ def _build_diagram_explanation_elements(
     segment: ScriptSegment,
     frame_index: int,
 ) -> list[dict]:
-    """Build elements for diagram_explanation: diagram zone + caption."""
+    """Build elements for diagram_explanation: diagram zone + short caption label."""
     return [
         {
             "role":       "diagram",
-            "text":       (cue or "diagram")[:100],
+            "text":       _concept_label(cue or "diagram", max_words=6),
             "font_size":  30,
             "color":      [40, 40, 40],
             "scale":      1.0,
@@ -592,7 +592,7 @@ def _build_diagram_explanation_elements(
         },
         {
             "role":       "caption",
-            "text":       (cue or "")[:140],
+            "text":       _key_phrase(cue or "", max_words=12),
             "font_size":  30,
             "color":      [60, 60, 60],
             "scale":      1.0,
@@ -608,11 +608,11 @@ def _build_animation_elements(
     segment: ScriptSegment,
     frame_index: int,
 ) -> list[dict]:
-    """Build elements for animation_scene: diagram zone (animation frame) + caption."""
+    """Build elements for animation_scene: diagram zone (animation frame) + short caption."""
     elements = [
         {
             "role":       "diagram",
-            "text":       (cue or "animation")[:80],
+            "text":       _concept_label(cue or "animation", max_words=5),
             "font_size":  28,
             "color":      [40, 40, 40],
             "scale":      1.0,
@@ -621,7 +621,7 @@ def _build_animation_elements(
         },
         {
             "role":       "caption",
-            "text":       (cue or "")[:140],
+            "text":       _key_phrase(cue or "", max_words=12),
             "font_size":  30,
             "color":      [60, 60, 60],
             "scale":      1.0,
@@ -649,28 +649,45 @@ def _build_narration_elements(
     segment: ScriptSegment,
     frame_index: int,
 ) -> list[dict]:
-    """Build elements for narration_with_caption: headline + body text."""
-    # Use first narrator line as headline, rest as body
-    lines = segment.narrator_lines
-    headline = lines[0][:100] if lines else segment.title[:100]
-    body = " ".join(lines[1:3])[:200] if len(lines) > 1 else ""
+    """Build elements for narration_with_caption: segment title headline + optional key term.
+
+    The segment title (e.g. "Why Things Stop") is already a concise label —
+    use it as the primary headline. Full narration lives in audio + subtitles.
+    If the segment title is too long or generic, fall back to extracting
+    the first clause of the first narrator line.
+    """
+    # Prefer the segment title — it's already a designed short label
+    title = segment.title.strip()
+    if title and len(title.split()) <= 8:
+        headline = title
+    else:
+        raw = (segment.narrator_lines[0] if segment.narrator_lines else title)
+        headline = _key_phrase(raw, max_words=8)
+
+    # Secondary: extract a short key term from narration if it adds new info
+    secondary = ""
+    if segment.narrator_lines:
+        candidate = _key_phrase(segment.narrator_lines[0], max_words=9)
+        # Only show if it's meaningfully different from the headline
+        if candidate.lower()[:20] != headline.lower()[:20] and len(candidate.split()) >= 4:
+            secondary = candidate
 
     elements: list[dict] = [
         {
             "role":       "headline",
             "text":       headline,
-            "font_size":  40,
+            "font_size":  44,
             "color":      [26, 26, 26],
             "scale":      1.0,
             "padding":    10,
             "asset_path": None,
         }
     ]
-    if body:
+    if secondary:
         elements.append({
             "role":       "body_text",
-            "text":       body,
-            "font_size":  30,
+            "text":       secondary,
+            "font_size":  32,
             "color":      [60, 60, 60],
             "scale":      1.0,
             "padding":    8,
@@ -732,6 +749,43 @@ def _slugify(text: str) -> str:
     slug = re.sub(r"[^a-z0-9]+", "_", text.lower())
     slug = slug.strip("_")
     return slug[:40]
+
+
+def _key_phrase(text: str, max_words: int = 9) -> str:
+    """
+    Extract a short on-screen label from a longer narration sentence.
+
+    On-screen text should be the core concept (≤ max_words words), NOT the
+    full narration — the full narration belongs in subtitles and audio.
+
+    Strategy (first match wins):
+    1. Split at the first strong pause (period, semicolon, colon, em-dash)
+       and return that clause if it is 3–max_words words long.
+    2. Return the first max_words words with an ellipsis.
+    """
+    text = text.strip()
+    if not text:
+        return ""
+    # Try clean first-clause extraction
+    for sep in (". ", "! ", "? ", "; ", ": ", " — ", " – ", " - "):
+        if sep in text:
+            clause = text.split(sep, 1)[0].strip(" .,;:!?—–-")
+            words = clause.split()
+            if 3 <= len(words) <= max_words:
+                return clause
+    # Fall back to first N words
+    words = text.split()
+    if len(words) <= max_words:
+        return text.rstrip(" .,;:!?")
+    return " ".join(words[:max_words]) + "…"
+
+
+def _concept_label(text: str, max_words: int = 6) -> str:
+    """
+    Extract a very short concept label (≤ max_words words) suitable for
+    headlines and lower-thirds where space is tightest.
+    """
+    return _key_phrase(text, max_words=max_words)
 
 
 # ---------------------------------------------------------------------------

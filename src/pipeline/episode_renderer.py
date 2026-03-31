@@ -544,8 +544,8 @@ def _generate_tts_audio(script_path: str, *, voice: str = _DEFAULT_TTS_VOICE, ra
             "edge-tts",
             "--file", temp_text_path,
             "--voice", voice,
-            "--rate", rate,
-            "--pitch", pitch,
+            f"--rate={rate}",    # use = syntax so negative values like -4% aren't parsed as flags
+            f"--pitch={pitch}",
             "--write-media", str(audio_path),
             "--write-subtitles", str(subtitles_path),
         ]

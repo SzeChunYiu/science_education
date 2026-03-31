@@ -703,26 +703,85 @@ class _FallbackCompositor:
 
     _font_cache: dict = {}
 
+    # Project font directory — bundled with the repo
+    _FONT_DIR = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+        "data", "fonts",
+    )
+
+    # Role → font family mapping
+    #
+    # "formal"      : Cinzel       — episode titles, character names, lower-thirds
+    #                               (high cap height, classical Roman feel — perfect
+    #                                for historical physicist names)
+    # "handwriting" : Caveat       — on-screen narration labels, body text
+    #                               (natural handwriting feel — like a teacher's notes)
+    # "body"        : Nunito       — captions and supporting text
+    #                               (rounded, readable at small sizes)
+    # "math"        : Arial Unicode / STIXGeneral — equations and derivations
+    #                               (Unicode math symbol support required)
+    _ROLE_FONT_FAMILY = {
+        "headline":       "formal",
+        "lower_third":    "formal",
+        "body_text":      "handwriting",
+        "caption":        "body",
+        "equation_center":"math",
+        "equation_right": "math",
+        "timeline":       "math",
+        "diagram":        "body",
+    }
+
     @classmethod
-    def _load_font(cls, size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
-        if size in cls._font_cache:
-            return cls._font_cache[size]
-        candidates = [
-            # macOS — prefer Unicode fonts for math symbols (∝, ∞, ≈, etc.)
+    def _candidates_for_family(cls, family: str) -> list[str]:
+        """Return ordered font file candidates for a logical family."""
+        fd = cls._FONT_DIR
+        if family == "formal":
+            return [
+                os.path.join(fd, "Cinzel-Regular.ttf"),
+                # system fallbacks
+                "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+                "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+            ]
+        if family == "handwriting":
+            return [
+                os.path.join(fd, "Caveat-Bold.ttf"),
+                os.path.join(fd, "Caveat-Regular.ttf"),
+                # system fallbacks
+                "/System/Library/Fonts/Supplemental/Arial.ttf",
+                "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+            ]
+        if family == "body":
+            return [
+                os.path.join(fd, "Nunito-Regular.ttf"),
+                # system fallbacks
+                "/System/Library/Fonts/Supplemental/Arial.ttf",
+                "/System/Library/Fonts/Helvetica.ttc",
+                "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+                "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+                "/usr/share/fonts/dejavu/DejaVuSans.ttf",
+            ]
+        # "math" and default
+        return [
             "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
             "/System/Library/Fonts/Supplemental/STIXGeneral.otf",
             "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
             "/System/Library/Fonts/Supplemental/Arial.ttf",
             "/System/Library/Fonts/Helvetica.ttc",
-            # Linux (Ubuntu/Debian)
             "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
             "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
             "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
             "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
-            # Linux (Red Hat / LUNARC)
             "/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf",
             "/usr/share/fonts/dejavu/DejaVuSans.ttf",
         ]
+
+    @classmethod
+    def _load_font(cls, size: int, role: str = "") -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
+        cache_key = (size, role)
+        if cache_key in cls._font_cache:
+            return cls._font_cache[cache_key]
+        family = cls._ROLE_FONT_FAMILY.get(role, "math")
+        candidates = cls._candidates_for_family(family)
         font = None
         for path in candidates:
             if os.path.isfile(path):
@@ -733,7 +792,7 @@ class _FallbackCompositor:
                     continue
         if font is None:
             font = ImageFont.load_default()
-        cls._font_cache[size] = font
+        cls._font_cache[cache_key] = font
         return font
 
     def _draw_placeholder(
@@ -823,13 +882,13 @@ class _FallbackCompositor:
         base_font_size = max(20, getattr(element, "font_size", 36))
         min_font_size = max(18, int(base_font_size * 0.72))
         font_size = base_font_size
-        font = self._load_font(font_size)
+        font = self._load_font(font_size, role=element.role)
         line_height = int(font_size * 1.35)
         max_visible_lines = max(1, available_h // max(1, line_height))
         lines = wrap_lines(element.text, font, font_size)
         while len(lines) > max_visible_lines and font_size > min_font_size:
             font_size = max(min_font_size, font_size - (2 if font_size > 28 else 1))
-            font = self._load_font(font_size)
+            font = self._load_font(font_size, role=element.role)
             line_height = int(font_size * 1.35)
             max_visible_lines = max(1, available_h // max(1, line_height))
             lines = wrap_lines(element.text, font, font_size)
