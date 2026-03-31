@@ -1,0 +1,16 @@
+name: Sync to GitHub
+
+on:
+  push:
+    branches: ["**"]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm push received
+        run: |
+          echo "Push received on branch ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Message: ${{ github.event.head_commit.message }}"
