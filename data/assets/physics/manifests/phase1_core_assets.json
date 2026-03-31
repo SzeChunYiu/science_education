@@ -1,0 +1,83 @@
+{
+  "name": "phase1_core_assets",
+  "description": "First reusable physics asset batch derived from the top-priority inventory items for early video production.",
+  "assets": [
+    {
+      "filename": "char_euler.png",
+      "category": "characters",
+      "width": 512,
+      "height": 768,
+      "prompt": "children's book illustration style, flat colors, rounded chibi character, big head, warm pastels, bold outlines, minimal detail, white background, Leonhard Euler standing, white powdered wig, 18th century Swiss academic black frock coat, white cravat, round friendly face, one eye slightly different suggesting visual impairment, 18th century mathematician"
+    },
+    {
+      "filename": "char_noether.png",
+      "category": "characters",
+      "width": 512,
+      "height": 768,
+      "prompt": "children's book illustration style, flat colors, rounded chibi character, big head, warm pastels, bold outlines, minimal detail, white background, Emmy Noether standing, round full face, dark hair gathered in a bun at back of head, small round wire-rimmed glasses, simple white high-collar blouse under dark academic jacket, long dark skirt, serious expression, early 20th century academic"
+    },
+    {
+      "filename": "char_lagrange.png",
+      "category": "characters",
+      "width": 512,
+      "height": 768,
+      "prompt": "children's book illustration style, flat colors, rounded chibi character, big head, warm pastels, bold outlines, minimal detail, white background, Joseph-Louis Lagrange standing, white powdered wig tied at back, elegant pale blue 18th century French academic frock coat, white ruffled cravat, refined composed expression, late 18th century Italian-French mathematician"
+    },
+    {
+      "filename": "char_hamilton.png",
+      "category": "characters",
+      "width": 512,
+      "height": 768,
+      "prompt": "children's book illustration style, flat colors, rounded chibi character, big head, warm pastels, bold outlines, minimal detail, white background, William Rowan Hamilton standing, long wavy dark brown hair slightly disheveled, 19th century Irish academic frock coat with wide lapels, white stock collar, dreamer faraway expression, 1840s era mathematician"
+    },
+    {
+      "filename": "char_kepler.png",
+      "category": "characters",
+      "width": 512,
+      "height": 768,
+      "prompt": "children's book illustration style, flat colors, rounded chibi character, big head, warm pastels, bold outlines, minimal detail, white background, Johannes Kepler standing, pointed dark brown beard, thin dark mustache, white Elizabethan ruff collar, dark academic robe, holding a quill or star chart, intense searching expression, early 17th century German astronomer"
+    },
+    {
+      "filename": "obj_pendulum.png",
+      "category": "objects",
+      "width": 512,
+      "height": 512,
+      "prompt": "children's book illustration style, flat colors, bold outlines, minimal detail, white background, pendulum, round ball bob on a thin straight string hanging from a small pivot point at top, solid warm orange bob, mid-swing position at a slight angle, no shadow, board book style physics object"
+    },
+    {
+      "filename": "obj_coil_spring.png",
+      "category": "objects",
+      "width": 512,
+      "height": 512,
+      "prompt": "children's book illustration style, flat colors, bold outlines, minimal detail, white background, horizontal coil spring, alternating light and medium blue zigzag coil, attached on left to a flat wall, right end free or attached to a small square block, simple schematic diagram style, no shadow no texture, board book style object"
+    },
+    {
+      "filename": "obj_earth_globe.png",
+      "category": "objects",
+      "width": 512,
+      "height": 512,
+      "prompt": "children's book illustration style, flat colors, bold outlines, minimal detail, white background, planet Earth globe, blue oceans flat color, green continental masses flat color, white cloud patches flat color, no texture no gradients, simple round sphere shape, board book style"
+    },
+    {
+      "filename": "obj_chalkboard.png",
+      "category": "objects",
+      "width": 512,
+      "height": 512,
+      "prompt": "children's book illustration style, flat colors, bold outlines, minimal detail, white background, classroom chalkboard, large rectangular dark green board, simple wooden frame border, freestanding on two legs, no text or letters on board, clean empty surface, board book style object"
+    },
+    {
+      "filename": "bg_ancient_greek_courtyard.png",
+      "category": "backgrounds",
+      "width": 1280,
+      "height": 720,
+      "prompt": "children's book illustration style, flat colors, bold outlines, minimal detail, warm pastel background scene, ancient Greek courtyard, two white marble columns with simple ionic capitals flanking the scene, terracotta or peach stone tile floor, small rounded olive tree with gray-green canopy in background center, pale blue sunny sky above, flat color fills, no gradients"
+    },
+    {
+      "filename": "bg_deep_space.png",
+      "category": "backgrounds",
+      "width": 1280,
+      "height": 720,
+      "prompt": "children's book illustration style, flat colors, bold outlines, minimal detail, deep dark navy blue background, scattered small white and pale yellow star dots of varying sizes throughout the scene, one faint pale purple oval nebula cloud, flat color fills, no gradients, board book cosmic background"
+    }
+  ]
+}

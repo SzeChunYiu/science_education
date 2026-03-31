@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Large generated output — don't commit rendered videos or frames
+output/physics/
+output/previews/
+output/preview_assets/
+output/previews_audio_check/
+output/production_log.json
+
+# Exception: keep equation clip cache and asset manifests
+!output/assets/equation_clips/.gitkeep
+
+# Test output and temp files
+*.mp4
+*.mp3
+*.m4a
+*.wav
+*.aac
+*.vtt
+*.srt
+frame_*.png
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# TTS temp files
+tts_*.txt
+
+# Secrets
+.env
+*.pem
+*.key
+secrets.json
+.secrets/
+*.token.json
+oauth_token.json
