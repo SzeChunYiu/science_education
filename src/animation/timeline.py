@@ -515,11 +515,12 @@ class _FallbackCompositor:
             # Path given but file missing → coloured placeholder
             self._draw_placeholder(layer, element, alpha)
         else:
-            # Text-only element
+            # Text-only element — sample background for WCAG contrast check
+            bg_color = self._sample_bg_color(canvas, x, y, w, h)
             if element.role.startswith("equation"):
-                self._draw_equation(layer, element, alpha)
+                self._draw_equation(layer, element, alpha, bg_color=bg_color)
             else:
-                self._draw_text(layer, element, alpha)
+                self._draw_text(layer, element, alpha, bg_color=bg_color)
 
         # Apply alpha
         if alpha < 255:
@@ -846,11 +847,12 @@ class _FallbackCompositor:
         layer: Image.Image,
         element: LayoutElement,
         alpha: int,
+        bg_color: tuple[int, int, int] | None = None,
     ) -> None:
         if not element.text or element.text.strip() == "":
             return
         measure = ImageDraw.Draw(layer)
-        r, g, b = element.color
+        r, g, b = self._ensure_readable(element.color, bg_color) if bg_color else element.color
         pad_x = max(8, int(getattr(element, "padding", 8)))
         pad_y = max(4, pad_x // 2)
         max_w = max(1, element.w - 2 * pad_x)
@@ -993,24 +995,89 @@ class _FallbackCompositor:
             return "right"
         return "left"
 
+    # ------------------------------------------------------------------
+    # WCAG contrast helpers
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _relative_luminance(rgb: tuple[int, int, int]) -> float:
+        """WCAG 2.1 relative luminance (0=black, 1=white)."""
+        def ch(c: int) -> float:
+            s = c / 255.0
+            return s / 12.92 if s <= 0.04045 else ((s + 0.055) / 1.055) ** 2.4
+        r, g, b = rgb
+        return 0.2126 * ch(r) + 0.7152 * ch(g) + 0.0722 * ch(b)
+
+    def _wcag_contrast(self, fg: tuple[int, int, int], bg: tuple[int, int, int]) -> float:
+        """WCAG 2.1 contrast ratio (1:1 to 21:1)."""
+        l1 = self._relative_luminance(fg)
+        l2 = self._relative_luminance(bg)
+        light, dark = max(l1, l2), min(l1, l2)
+        return (light + 0.05) / (dark + 0.05)
+
+    def _ensure_readable(
+        self,
+        fg: tuple[int, int, int],
+        bg: tuple[int, int, int],
+        min_ratio: float = 4.5,
+    ) -> tuple[int, int, int]:
+        """Return fg if contrast ≥ min_ratio, else white or black (better contrast wins)."""
+        if self._wcag_contrast(fg, bg) >= min_ratio:
+            return fg
+        white = self._wcag_contrast((255, 255, 255), bg)
+        black = self._wcag_contrast((0, 0, 0), bg)
+        return (255, 255, 255) if white >= black else (0, 0, 0)
+
+    @staticmethod
+    def _sample_bg_color(
+        canvas: Image.Image,
+        x: int,
+        y: int,
+        w: int,
+        h: int,
+    ) -> tuple[int, int, int]:
+        """
+        Return the average RGB of the canvas pixels behind a text element.
+        Samples a centre patch (≤40×40 px) for speed.
+        """
+        x0 = max(0, x)
+        y0 = max(0, y)
+        x1 = min(canvas.width, x + w)
+        y1 = min(canvas.height, y + h)
+        if x1 <= x0 or y1 <= y0:
+            return (128, 128, 128)
+        region = canvas.crop((x0, y0, x1, y1)).convert("RGB")
+        cx, cy = region.width // 2, region.height // 2
+        ss = min(40, region.width, region.height)
+        sx, sy = max(0, cx - ss // 2), max(0, cy - ss // 2)
+        patch = region.crop((sx, sy, sx + ss, sy + ss))
+        pixels = list(patch.getdata())
+        n = len(pixels)
+        avg_r = sum(p[0] for p in pixels) // n
+        avg_g = sum(p[1] for p in pixels) // n
+        avg_b = sum(p[2] for p in pixels) // n
+        return (avg_r, avg_g, avg_b)
+
     def _draw_equation(
         self,
         layer: Image.Image,
         element: LayoutElement,
         alpha: int,
+        bg_color: tuple[int, int, int] | None = None,
     ) -> None:
         if not element.text or element.text.strip() == "":
             return
 
+        color = self._ensure_readable(element.color, bg_color) if bg_color else element.color
         equation = self._render_equation_image(
             text=element.text,
             font_size=max(28, getattr(element, "font_size", 72)),
-            color=element.color,
+            color=color,
             max_w=max(1, element.w),
             max_h=max(1, element.h),
         )
         if equation is None:
-            self._draw_text(layer, element, alpha)
+            self._draw_text(layer, element, alpha, bg_color=bg_color)
             return
 
         x = element.x + max(0, (element.w - equation.width) // 2)
