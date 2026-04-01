@@ -75,21 +75,23 @@ def download_videos(
 
         logger.info("[%d/%d] Downloading %s", i + 1, len(videos), vid)
 
-        # Download video (mp4)
-        video_ok = _run_ytdlp(
-            [
-                "--download-archive",
-                str(archive_file),
-                "-f",
-                "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
-                "--merge-output-format",
-                "mp4",
-                "-o",
-                str(vid_dir / "video.%(ext)s"),
-                url,
-            ],
-            timeout=1200,
-        )
+        # Download video (mp4) — no archive here, skip check via file existence
+        video_file = vid_dir / "video.mp4"
+        if video_file.exists():
+            video_ok = True
+        else:
+            video_ok = _run_ytdlp(
+                [
+                    "-f",
+                    "bestvideo[vcodec^=avc1][ext=mp4]+bestaudio[ext=m4a]/bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
+                    "--merge-output-format",
+                    "mp4",
+                    "-o",
+                    str(vid_dir / "video.%(ext)s"),
+                    url,
+                ],
+                timeout=1200,
+            )
 
         # Download audio (mp3)
         audio_ok = _run_ytdlp(
@@ -173,7 +175,7 @@ def download_negative_channels(
                 "--playlist-end",
                 str(max_videos),
                 "-f",
-                "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
+                "bestvideo[vcodec^=avc1][ext=mp4]+bestaudio[ext=m4a]/bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
                 "--merge-output-format",
                 "mp4",
                 "-o",
