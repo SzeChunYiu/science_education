@@ -1,0 +1,42 @@
+# Science Education Video Pipeline - Local Dependencies (Mac M4 MPS)
+
+# Core
+Pillow>=10.0
+numpy>=1.24
+tqdm>=4.66
+pyyaml>=6.0
+
+# ML inference (MPS-compatible)
+torch>=2.2
+torchvision>=0.17
+diffusers>=0.28
+transformers>=4.40
+safetensors>=0.4
+accelerate>=0.28
+sentence-transformers>=2.7
+
+# TTS
+f5-tts>=0.3
+
+# Audio
+librosa>=0.10
+
+# Quality scoring
+simple-aesthetics-predictor
+easyocr>=1.7
+
+# Animation
+lottie>=0.7
+
+# Depth estimation
+timm>=0.9
+
+# NLI / text
+python-Levenshtein>=0.25
+spacy>=3.7
+
+# Colour extraction
+colorthief>=0.2.1
+
+# Video
+moviepy>=1.0

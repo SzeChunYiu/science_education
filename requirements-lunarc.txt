@@ -1,0 +1,26 @@
+# Science Education Video Pipeline - LUNARC HPC Dependencies (CUDA)
+# Install on top of base requirements: pip install -r requirements-lunarc.txt
+
+-r requirements.txt
+
+# Data collection
+yt-dlp>=2024.1
+scenedetect[opencv]>=0.6
+
+# Transcription
+openai-whisper>=20231117
+
+# Training
+tensorboard>=2.15
+
+# Object detection (for quality scoring)
+ultralytics>=8.1
+
+# Text quality
+textstat>=0.7.3
+
+# Audio quality
+aeneas>=1.7
+
+# MusicGen (also needed on LUNARC for batch rendering)
+audiocraft>=1.3
