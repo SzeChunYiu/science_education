@@ -7,7 +7,7 @@ Usage:
     python -m src.style_learner.feature_extraction.extract_all [OPTIONS]
 
 Options:
-    --data-dir PATH     Root data directory (default: data/ted_ed_videos)
+    --data-dir PATH     Root data directory (default: data/style_reference/videos)
     --device DEVICE     Torch device: cuda, mps, cpu (default: cuda)
     --test-mode         Process only the first 2 videos for quick testing
     --skip-clip         Skip CLIP feature extraction
@@ -271,7 +271,7 @@ def main() -> None:
     parser.add_argument(
         "--data-dir",
         type=Path,
-        default=Path("data/ted_ed_videos"),
+        default=Path("data/style_reference/videos"),
         help="Root data directory containing video subdirectories",
     )
     parser.add_argument(
