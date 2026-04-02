@@ -1,0 +1,136 @@
+# Visual Asset Scan Summary
+
+- Scripts scanned: **189**
+- Existing asset stems detected: **48**
+- Candidate objects: **78**
+- Candidate concepts: **49**
+- Distinct raw visual-cue phrases: **1116**
+
+## Top Missing Objects
+
+- **electron** — score 250, episodes 73
+- **atom** — score 135, episodes 63
+- **orbiting body** — score 91, episodes 37
+- **photon** — score 88, episodes 37
+- **string** — score 75, episodes 21
+- **screen** — score 69, episodes 24
+- **sphere** — score 61, episodes 25
+- **wire** — score 58, episodes 27
+- **block** — score 50, episodes 21
+- **clock** — score 49, episodes 18
+- **nucleus** — score 47, episodes 26
+- **car** — score 42, episodes 15
+- **rod** — score 36, episodes 20
+- **engine** — score 32, episodes 17
+- **proton** — score 32, episodes 19
+- **magnet** — score 29, episodes 18
+- **rocket** — score 28, episodes 8
+- **cavity** — score 22, episodes 11
+- **capacitor** — score 21, episodes 10
+- **ladder** — score 20, episodes 9
+- **crystal** — score 18, episodes 10
+- **disk** — score 18, episodes 5
+- **train** — score 18, episodes 8
+- **conductor** — score 17, episodes 7
+- **wheel** — score 16, episodes 11
+- **gyroscope** — score 15, episodes 4
+- **stone** — score 15, episodes 11
+- **parallel plate** — score 14, episodes 11
+- **dipole** — score 13, episodes 9
+- **thermometer** — score 13, episodes 4
+- **inclined plane** — score 12, episodes 3
+- **compass** — score 11, episodes 7
+- **interferometer** — score 10, episodes 3
+- **slit** — score 10, episodes 5
+- **mirror** — score 9, episodes 9
+- **spark** — score 9, episodes 5
+- **pulley** — score 8, episodes 4
+- **antenna** — score 7, episodes 6
+- **brass ball** — score 7, episodes 3
+- **feather** — score 7, episodes 3
+
+## Top Missing Concepts
+
+- **energy** — score 631, episodes 146
+- **force** — score 399, episodes 119
+- **momentum** — score 392, episodes 96
+- **orbit** — score 257, episodes 58
+- **gravity** — score 198, episodes 61
+- **work** — score 182, episodes 100
+- **temperature** — score 180, episodes 42
+- **velocity** — score 180, episodes 69
+- **angular momentum** — score 154, episodes 46
+- **lagrangian** — score 117, episodes 27
+- **action** — score 115, episodes 36
+- **kinetic energy** — score 102, episodes 43
+- **frequency** — score 95, episodes 37
+- **harmonic** — score 92, episodes 36
+- **entropy** — score 75, episodes 17
+- **current** — score 64, episodes 38
+- **potential energy** — score 62, episodes 29
+- **phase space** — score 59, episodes 13
+- **acceleration** — score 57, episodes 35
+- **friction** — score 55, episodes 18
+- **magnetic field** — score 54, episodes 31
+- **electric field** — score 52, episodes 26
+- **polarization** — score 46, episodes 11
+- **wavelength** — score 43, episodes 23
+- **uncertainty principle** — score 39, episodes 17
+- **interference** — score 34, episodes 18
+- **electromagnetic wave** — score 30, episodes 19
+- **superposition** — score 28, episodes 14
+- **field lines** — score 24, episodes 15
+- **charge density** — score 21, episodes 14
+- **resonance** — score 19, episodes 6
+- **matrix mechanics** — score 15, episodes 10
+- **potential difference** — score 15, episodes 11
+- **diffraction** — score 14, episodes 6
+- **standing wave** — score 14, episodes 7
+- **time dilation** — score 13, episodes 6
+- **reflection** — score 12, episodes 8
+- **conservation of energy** — score 10, episodes 9
+- **displacement current** — score 10, episodes 5
+- **electromagnetic induction** — score 10, episodes 10
+
+## Top Raw Visual Phrases
+
+- **diagram** — mentions 11
+- **equation appearing** — mentions 7
+- **labels** — mentions 6
+- **arrows** — mentions 5
+- **equation displayed** — mentions 5
+- **animation** — mentions 4
+- **equation** — mentions 4
+- **result boxed** — mentions 4
+- **each symbol labeled** — mentions 3
+- **earth** — mentions 3
+- **ball rolling on infinite flat surface** — mentions 2
+- **latin text appearing** — mentions 2
+- **rocket in space** — mentions 2
+- **two objects a** — mentions 2
+- **clean diagram** — mentions 2
+- **t up** — mentions 2
+- **equation on screen** — mentions 2
+- **boxed result** — mentions 2
+- **before** — mentions 2
+- **s appearing** — mentions 2
+- **s highlighted** — mentions 2
+- **this equation appearing** — mentions 2
+- **with each term labeled** — mentions 2
+- **each term labeled** — mentions 2
+- **∂t dt** — mentions 2
+- **dt = ∂h** — mentions 2
+- **calculation** — mentions 2
+- **substitution step** — mentions 2
+- **equation — ∂w** — mentions 2
+- **vector diagram** — mentions 2
+- **numerical calculation displayed** — mentions 2
+- **solution displayed** — mentions 2
+- **4×4 matrix** — mentions 2
+- **energy level diagram** — mentions 2
+- **animated aristotle s four elements — earth** — mentions 1
+- **water** — mentions 1
+- **fire — each moving to their natural place** — mentions 1
+- **air rushing around a thrown ball** — mentions 1
+- **arrow flying** — mentions 1
+- **slowing** — mentions 1

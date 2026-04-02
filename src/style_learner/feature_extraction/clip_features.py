@@ -62,12 +62,33 @@ class CLIPFeatureExtractor:
         # Pre-compute scene type text embeddings for zero-shot classification
         self._scene_type_embeddings = self._precompute_scene_embeddings()
 
+    def _extract_features(self, result, projection):
+        """Extract tensor from model output, handling API changes."""
+        if isinstance(result, self._torch.Tensor):
+            return result
+        # Newer transformers returns BaseModelOutputWithPooling
+        pooled = result.pooler_output
+        # Only project if dimensions don't match (not already projected)
+        if pooled.shape[-1] != projection.out_features:
+            return projection(pooled)
+        return pooled
+
+    def _get_text_features(self, texts: list[str]):
+        """Extract text features, handling transformers API changes."""
+        inputs = self.processor(text=texts, return_tensors="pt", padding=True)
+        text_inputs = {k: v.to(self.device) for k, v in inputs.items() if k in ("input_ids", "attention_mask")}
+        result = self.model.get_text_features(**text_inputs)
+        return self._extract_features(result, self.model.text_projection)
+
+    def _get_image_features(self, pixel_values):
+        """Extract image features, handling transformers API changes."""
+        result = self.model.get_image_features(pixel_values=pixel_values)
+        return self._extract_features(result, self.model.visual_projection)
+
     def _precompute_scene_embeddings(self) -> np.ndarray:
         """Pre-compute normalized text embeddings for all scene types."""
         with self._torch.no_grad():
-            inputs = self.processor(text=SCENE_TYPES, return_tensors="pt", padding=True)
-            inputs = {k: v.to(self.device) for k, v in inputs.items()}
-            text_features = self.model.get_text_features(**inputs)
+            text_features = self._get_text_features(SCENE_TYPES)
             text_features = text_features / text_features.norm(dim=-1, keepdim=True)
         return text_features.cpu().numpy().astype(np.float32)
 
@@ -85,8 +106,8 @@ class CLIPFeatureExtractor:
         image = Image.open(image_path).convert("RGB")
         with self._torch.no_grad():
             inputs = self.processor(images=image, return_tensors="pt")
-            inputs = {k: v.to(self.device) for k, v in inputs.items()}
-            features = self.model.get_image_features(**inputs)
+            pixel_values = inputs["pixel_values"].to(self.device)
+            features = self._get_image_features(pixel_values)
             features = features / features.norm(dim=-1, keepdim=True)
         return features.cpu().numpy().astype(np.float32).squeeze(0)
 
@@ -100,9 +121,7 @@ class CLIPFeatureExtractor:
             Normalized 512-dimensional float32 numpy array.
         """
         with self._torch.no_grad():
-            inputs = self.processor(text=[text], return_tensors="pt", padding=True)
-            inputs = {k: v.to(self.device) for k, v in inputs.items()}
-            features = self.model.get_text_features(**inputs)
+            features = self._get_text_features([text])
             features = features / features.norm(dim=-1, keepdim=True)
         return features.cpu().numpy().astype(np.float32).squeeze(0)
 
@@ -144,8 +163,8 @@ class CLIPFeatureExtractor:
             images = [Image.open(p).convert("RGB") for p in batch_paths]
             with self._torch.no_grad():
                 inputs = self.processor(images=images, return_tensors="pt", padding=True)
-                inputs = {k: v.to(self.device) for k, v in inputs.items()}
-                features = self.model.get_image_features(**inputs)
+                pixel_values = inputs["pixel_values"].to(self.device)
+                features = self._get_image_features(pixel_values)
                 features = features / features.norm(dim=-1, keepdim=True)
             embeddings = features.cpu().numpy().astype(np.float32)
             for j in range(embeddings.shape[0]):

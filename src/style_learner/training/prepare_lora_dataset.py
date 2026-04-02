@@ -1,5 +1,6 @@
 """Prepare LoRA training datasets from extracted TED-Ed reference frames."""
 import json
+import random
 import shutil
 import logging
 from pathlib import Path
@@ -64,6 +65,63 @@ def prepare_style_dataset(
         count += 1
 
     logger.info(f"Prepared {count} images for style LoRA training in {output_dir}")
+    return count
+
+
+def prepare_style_dataset_from_keyframes(
+    data_dir: Path = DATA_DIR / "videos",
+    output_dir: Path = LORA_DIR / "teded_style",
+    max_images: int = 200,
+) -> int:
+    """Select TED-Ed keyframes for style LoRA training using scene midpoints.
+
+    Does NOT require features.json or aesthetic scores — works directly from
+    scenes.json and extracted frames. Selects the middle frame of each scene
+    as a representative keyframe, then randomly samples up to max_images.
+    """
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    candidates = []
+    for vid_dir in sorted(data_dir.iterdir()):
+        if not vid_dir.is_dir():
+            continue
+        scenes_path = vid_dir / "scenes.json"
+        frames_dir = vid_dir / "frames"
+        if not scenes_path.exists() or not frames_dir.exists():
+            continue
+
+        scenes = json.loads(scenes_path.read_text())
+        frame_files = sorted(frames_dir.iterdir())
+        if not frame_files:
+            continue
+
+        for scene in scenes:
+            start = scene.get("start_frame", 0)
+            end = scene.get("end_frame", len(frame_files) - 1)
+            mid = (start + end) // 2
+            if 0 <= mid < len(frame_files):
+                candidates.append(frame_files[mid])
+
+    # Shuffle and select
+    random.seed(42)
+    random.shuffle(candidates)
+    selected = candidates[:max_images]
+
+    count = 0
+    for i, frame_path in enumerate(selected):
+        dest = output_dir / f"frame_{i:04d}.png"
+        img = Image.open(frame_path).convert("RGB").resize((1024, 1024), Image.LANCZOS)
+        img.save(dest, quality=95)
+
+        caption = (
+            "teded_style, educational animated illustration, "
+            "flat color style, bold outlines, clean composition, "
+            "warm palette, children's educational animation"
+        )
+        dest.with_suffix(".txt").write_text(caption)
+        count += 1
+
+    logger.info(f"Prepared {count} keyframe images for style LoRA in {output_dir}")
     return count
 
 

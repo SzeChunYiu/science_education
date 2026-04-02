@@ -59,36 +59,73 @@ TEMPLATES = {
 
 # Default background per template — relative to project root
 _TEMPLATE_BACKGROUNDS: dict[str, str] = {
-    "equation_reveal":        "data/assets/physics/backgrounds/bg_outer_space.png",
-    "derivation_step":        "data/assets/physics/backgrounds/bg_outer_space.png",
-    "character_scene":        "data/assets/physics/backgrounds/bg_ancient_greek_courtyard.png",
+    "equation_reveal":        "data/assets/physics/backgrounds/bg_chalkboard.png",
+    "derivation_step":        "data/assets/physics/backgrounds/bg_chalkboard.png",
+    "character_scene":        "data/assets/physics/backgrounds/bg_study.png",
     "two_element_comparison": "data/assets/physics/backgrounds/bg_grass_field.png",
-    "diagram_explanation":    "data/assets/physics/backgrounds/bg_grass_field.png",
+    "diagram_explanation":    "data/assets/physics/backgrounds/bg_laboratory.png",
     "animation_scene":        "data/assets/physics/backgrounds/bg_grass_field.png",
-    "narration_with_caption": "data/assets/physics/backgrounds/bg_ancient_greek_courtyard.png",
+    "narration_with_caption": "data/assets/physics/backgrounds/bg_study.png",
 }
 
 _CHARACTER_BACKGROUNDS: dict[str, str] = {
     "aristotle": "data/assets/physics/backgrounds/bg_ancient_greek_courtyard.png",
     "newton": "data/assets/physics/backgrounds/bg_grass_field.png",
-    "galileo": "data/assets/physics/backgrounds/bg_grass_field.png",
-    "descartes": "data/assets/physics/backgrounds/bg_grass_field.png",
-    "leibniz": "data/assets/physics/backgrounds/bg_grass_field.png",
-    "kepler": "data/assets/physics/backgrounds/bg_grass_field.png",
-    "euler": "data/assets/physics/backgrounds/bg_grass_field.png",
-    "lagrange": "data/assets/physics/backgrounds/bg_grass_field.png",
-    "hamilton": "data/assets/physics/backgrounds/bg_grass_field.png",
-    "noether": "data/assets/physics/backgrounds/bg_grass_field.png",
-    "emilie": "data/assets/physics/backgrounds/bg_grass_field.png",
-    "du châtelet": "data/assets/physics/backgrounds/bg_grass_field.png",
-    "du chatelet": "data/assets/physics/backgrounds/bg_grass_field.png",
+    "galileo": "data/assets/physics/backgrounds/bg_laboratory.png",
+    "descartes": "data/assets/physics/backgrounds/bg_study.png",
+    "leibniz": "data/assets/physics/backgrounds/bg_study.png",
+    "kepler": "data/assets/physics/backgrounds/bg_deep_space.png",
+    "euler": "data/assets/physics/backgrounds/bg_study.png",
+    "lagrange": "data/assets/physics/backgrounds/bg_study.png",
+    "hamilton": "data/assets/physics/backgrounds/bg_study.png",
+    "noether": "data/assets/physics/backgrounds/bg_study.png",
+    "emilie": "data/assets/physics/backgrounds/bg_study.png",
+    "du châtelet": "data/assets/physics/backgrounds/bg_study.png",
+    "du chatelet": "data/assets/physics/backgrounds/bg_study.png",
+    "einstein": "data/assets/physics/backgrounds/bg_study.png",
+    "maxwell": "data/assets/physics/backgrounds/bg_laboratory.png",
+    "faraday": "data/assets/physics/backgrounds/bg_laboratory.png",
+    "boltzmann": "data/assets/physics/backgrounds/bg_study.png",
+    "planck": "data/assets/physics/backgrounds/bg_chalkboard.png",
+    "bohr": "data/assets/physics/backgrounds/bg_laboratory.png",
+    "schrodinger": "data/assets/physics/backgrounds/bg_study.png",
+    "dirac": "data/assets/physics/backgrounds/bg_chalkboard.png",
+    "feynman": "data/assets/physics/backgrounds/bg_chalkboard.png",
 }
 
 _SUBJECT_BACKGROUND_HINTS: tuple[tuple[tuple[str, ...], str], ...] = (
-    (("space", "orbit", "planet", "star", "moon", "galaxy", "earth", "globe"), "data/assets/physics/backgrounds/bg_deep_space.png"),
-    (("ice", "skate", "slip", "frictionless"), "data/assets/physics/backgrounds/bg_ice_surface.png"),
-    (("aristotle", "greece", "greek", "athens"), "data/assets/physics/backgrounds/bg_ancient_greek_courtyard.png"),
-    (("ball", "apple", "ramp", "field", "throw", "projectile", "air", "wind", "flow"), "data/assets/physics/backgrounds/bg_grass_field.png"),
+    # Historical periods / locations (most specific first)
+    (("aristotle", "greece", "greek", "athens", "ancient", "ptolemy", "philoponus", "alexandria"), "data/assets/physics/backgrounds/bg_ancient_greek_courtyard.png"),
+    (("rome", "roman", "pantheon"), "data/assets/physics/backgrounds/bg_pantheon.png"),
+    (("pisa", "galileo", "ramp", "inclined plane", "brass ball"), "data/assets/physics/backgrounds/bg_laboratory.png"),
+    (("royal society", "london", "1668", "hooke", "wren"), "data/assets/physics/backgrounds/bg_royal_society.png"),
+    (("göttingen", "gottingen", "university", "lecture", "classroom"), "data/assets/physics/backgrounds/bg_university_lecture.png"),
+    (("patent office", "bern", "1905"), "data/assets/physics/backgrounds/bg_patent_office.png"),
+    (("observatory", "telescope", "uraniborg", "tycho"), "data/assets/physics/backgrounds/bg_observatory.png"),
+    # Physics domains
+    (("space", "orbit", "planet", "star", "moon", "galaxy", "relativity", "spacetime", "light speed", "cosmos"), "data/assets/physics/backgrounds/bg_spacetime.png"),
+    (("electromagnetic", "electric", "magnetic", "charge", "current", "maxwell", "faraday", "coulomb", "field lines"), "data/assets/physics/backgrounds/bg_electromagnetic.png"),
+    (("heat", "temperature", "entropy", "thermal", "thermodynamic", "boltzmann", "carnot", "steam"), "data/assets/physics/backgrounds/bg_thermal.png"),
+    (("quantum", "wave function", "superposition", "probability", "schrodinger", "planck", "bohr", "photon", "uncertainty"), "data/assets/physics/backgrounds/bg_quantum.png"),
+    (("accelerator", "particle", "collider", "cern"), "data/assets/physics/backgrounds/bg_particle_accelerator.png"),
+    # Settings / activities
+    (("experiment", "lab", "measure", "apparatus", "instrument", "device", "tested", "measured"), "data/assets/physics/backgrounds/bg_laboratory.png"),
+    (("equation", "derive", "proof", "formula", "theorem", "calculus", "math"), "data/assets/physics/backgrounds/bg_chalkboard.png"),
+    (("book", "wrote", "published", "library", "manuscript", "principia", "read"), "data/assets/physics/backgrounds/bg_library.png"),
+    (("workshop", "machine", "gear", "mechanical", "engine", "pulley", "clockwork"), "data/assets/physics/backgrounds/bg_workshop.png"),
+    (("train", "railway", "station", "track"), "data/assets/physics/backgrounds/bg_train_station.png"),
+    (("road", "car", "highway", "braking", "driving"), "data/assets/physics/backgrounds/bg_road_highway.png"),
+    # Natural settings
+    (("ice", "skate", "slip", "frictionless", "friction"), "data/assets/physics/backgrounds/bg_ice_surface.png"),
+    (("ball", "apple", "throw", "projectile", "field", "outdoor", "ground", "floor", "roll"), "data/assets/physics/backgrounds/bg_grass_field.png"),
+    (("ocean", "water", "wave", "fluid", "tide", "sea"), "data/assets/physics/backgrounds/bg_ocean.png"),
+    (("mountain", "height", "gravity", "potential", "climb", "hill"), "data/assets/physics/backgrounds/bg_mountain.png"),
+    (("desert", "sand", "dune"), "data/assets/physics/backgrounds/bg_desert.png"),
+    (("sunset", "dawn", "dusk"), "data/assets/physics/backgrounds/bg_sunset.png"),
+    (("garden", "tree", "nature"), "data/assets/physics/backgrounds/bg_garden.png"),
+    (("cave", "underground"), "data/assets/physics/backgrounds/bg_cave.png"),
+    (("city", "skyline", "building"), "data/assets/physics/backgrounds/bg_city_skyline.png"),
+    (("underwater", "submarine", "deep"), "data/assets/physics/backgrounds/bg_underwater.png"),
 )
 
 _AIRFLOW_ACCENT_ASSET = "data/assets/physics/objects/obj_airflow_streamlines.png"
@@ -136,6 +173,15 @@ class SceneMapper:
         "emilie":       "data/assets/physics/characters/char_noether.png",
         "du châtelet":  "data/assets/physics/characters/char_noether.png",
         "du chatelet":  "data/assets/physics/characters/char_noether.png",
+        "einstein":     "data/assets/physics/characters/char_einstein.png",
+        "maxwell":      "data/assets/physics/characters/char_maxwell.png",
+        "faraday":      "data/assets/physics/characters/char_faraday.png",
+        "boltzmann":    "data/assets/physics/characters/char_boltzmann.png",
+        "planck":       "data/assets/physics/characters/char_planck.png",
+        "bohr":         "data/assets/physics/characters/char_bohr.png",
+        "schrodinger":  "data/assets/physics/characters/char_schrodinger.png",
+        "dirac":        "data/assets/physics/characters/char_dirac.png",
+        "feynman":      "data/assets/physics/characters/char_feynman.png",
     }
 
     def __init__(self, episode_id: str, aspect_ratio: str = "16:9") -> None:
@@ -185,7 +231,15 @@ class SceneMapper:
             else:
                 template = "narration_with_caption"
 
-            background = self._background_for_scene(template, cue)
+            # Pass narrator text for better background context matching
+            if segment.narrator_lines:
+                narrator_text = " ".join(
+                    line.text if hasattr(line, "text") else str(line)
+                    for line in segment.narrator_lines
+                )
+            else:
+                narrator_text = ""
+            background = self._background_for_scene(template, cue, narrator_text=narrator_text)
             elements = self._build_elements(template, cue, segment, frame_index)
 
             scene: dict = {
@@ -201,21 +255,35 @@ class SceneMapper:
 
         return scenes
 
-    def _background_for_scene(self, template: str, cue: Optional[str]) -> str:
-        background = _TEMPLATE_BACKGROUNDS.get(template, "assets/backgrounds/bg_study.png")
-        if not cue:
-            return background
-        if template == "character_scene":
+    def _background_for_scene(self, template: str, cue: Optional[str],
+                              narrator_text: str = "") -> str:
+        """Pick the best background by matching visual cue AND narrator context.
+
+        Priority:
+        1. Character-specific background (for character_scene with known character)
+        2. Subject-keyword match against both visual cue and narrator text
+        3. Template default
+        """
+        default_bg = _TEMPLATE_BACKGROUNDS.get(template, "data/assets/physics/backgrounds/bg_study.png")
+
+        # Combine all available text for context matching
+        context = " ".join(filter(None, [cue, narrator_text])).lower()
+
+        # For character scenes, try character-specific background first
+        if template == "character_scene" and cue:
             char_name = self.extract_character(cue)
             if char_name:
-                return _CHARACTER_BACKGROUNDS.get(char_name, background)
-            return background
-        if template in {"diagram_explanation", "animation_scene", "object_demo", "two_element_comparison", "timeline_sequence"}:
-            inferred = self._background_from_subject(cue)
+                char_bg = _CHARACTER_BACKGROUNDS.get(char_name)
+                if char_bg:
+                    return char_bg
+
+        # Try subject-keyword matching against ALL context (for ALL templates)
+        if context:
+            inferred = self._background_from_subject(context)
             if inferred:
                 return inferred
-            return background
-        return background
+
+        return default_bg
 
     def _background_from_subject(self, cue: str) -> str:
         lower = (cue or "").lower()
@@ -649,18 +717,21 @@ def _build_narration_elements(
     segment: ScriptSegment,
     frame_index: int,
 ) -> list[dict]:
-    """Build elements for narration_with_caption: segment title headline + optional key term.
+    """Build elements for narration_with_caption: optional headline + key term.
 
-    The segment title (e.g. "Why Things Stop") is already a concise label —
-    use it as the primary headline. Full narration lives in audio + subtitles.
-    If the segment title is too long or generic, fall back to extracting
-    the first clause of the first narrator line.
+    Full narration belongs in audio + subtitles.  Only show a headline when
+    the segment title is real content (e.g. "Why Things Stop"), not a
+    structural/section label like "Opening Hook" or "Conclusion".
     """
-    # Prefer the segment title — it's already a designed short label
     title = segment.title.strip()
-    if title and len(title.split()) <= 8:
+
+    # Filter out structural section labels that look like debug/navigation text.
+    # These are generic segment headings (e.g. "Opening Hook", "Introduction",
+    # "Conclusion") that should NOT appear as on-screen headlines.
+    headline = ""
+    if title and not _is_structural_label(title) and len(title.split()) <= 8:
         headline = title
-    else:
+    elif title and not _is_structural_label(title):
         raw = (segment.narrator_lines[0] if segment.narrator_lines else title)
         headline = _key_phrase(raw, max_words=8)
 
@@ -669,11 +740,15 @@ def _build_narration_elements(
     if segment.narrator_lines:
         candidate = _key_phrase(segment.narrator_lines[0], max_words=9)
         # Only show if it's meaningfully different from the headline
-        if candidate.lower()[:20] != headline.lower()[:20] and len(candidate.split()) >= 4:
+        if headline and candidate.lower()[:20] != headline.lower()[:20] and len(candidate.split()) >= 4:
             secondary = candidate
+        elif not headline and len(candidate.split()) >= 4:
+            # No headline — promote the narrator key phrase to headline
+            headline = candidate
 
-    elements: list[dict] = [
-        {
+    elements: list[dict] = []
+    if headline:
+        elements.append({
             "role":       "headline",
             "text":       headline,
             "font_size":  44,
@@ -681,8 +756,7 @@ def _build_narration_elements(
             "scale":      1.0,
             "padding":    10,
             "asset_path": None,
-        }
-    ]
+        })
     if secondary:
         elements.append({
             "role":       "body_text",
@@ -694,6 +768,31 @@ def _build_narration_elements(
             "asset_path": None,
         })
     return elements
+
+
+# Structural/section labels that should NOT be displayed as on-screen text.
+# These are segment headings used for script organization, not content.
+_STRUCTURAL_LABELS = frozenset({
+    "opening hook", "hook", "introduction", "intro", "conclusion",
+    "outro", "closing", "recap", "summary", "bridge", "transition",
+    "opening", "ending", "final thoughts", "wrap up", "wrap-up",
+    "teaser", "preview", "cold open",
+})
+
+
+def _is_structural_label(title: str) -> bool:
+    """Return True if *title* is a generic section label, not real content."""
+    normalised = title.strip().lower()
+    # Exact match against known structural labels
+    if normalised in _STRUCTURAL_LABELS:
+        return True
+    # Pattern: looks like a scene_id (e.g. "ep01_s02_f00")
+    if re.match(r"^ep\d+_s\d+_f\d+$", normalised):
+        return True
+    # Pattern: "Part N" or "Segment N" headings
+    if re.match(r"^(part|segment|section|chapter)\s+\d+", normalised, re.IGNORECASE):
+        return True
+    return False
 
 
 # Dispatch table: template → builder function
@@ -714,9 +813,15 @@ _ELEMENT_BUILDERS = {
 
 def _fallback_element(segment: ScriptSegment) -> list[dict]:
     """Return a minimal safe element when a builder fails."""
+    title = segment.title[:100]
+    # Suppress structural labels from appearing on screen
+    if _is_structural_label(title):
+        title = ""
+    if not title:
+        return []
     return [{
         "role":       "headline",
-        "text":       segment.title[:100],
+        "text":       title,
         "font_size":  36,
         "color":      [26, 26, 26],
         "scale":      1.0,

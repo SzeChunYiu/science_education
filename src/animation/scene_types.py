@@ -658,20 +658,21 @@ def storybook_hook_title_card_scene(
     hero_rect = _planned_rect(layout_rects, "hero", hero_rect)
     badge_rect = _planned_rect(layout_rects, "badge", badge_rect)
 
-    title_text_el = _place_element(
-        "headline",
-        title_rect,
-        text=title_text,
-        font_size=60 if aspect_ratio == "16:9" else 50,
-        color=_STORYBOOK_INK,
-        z=40,
-    )
-    elements.append(_timeline_element(
-        title_text_el,
-        total_frames,
-        enter_frame=0,
-        enter_anim=_text_reveal_anim(title_text, fps, min_seconds=0.9, max_seconds=1.8, chars_per_second=18.0),
-    ))
+    if title_text and title_text.strip():
+        title_text_el = _place_element(
+            "headline",
+            title_rect,
+            text=title_text,
+            font_size=60 if aspect_ratio == "16:9" else 50,
+            color=_STORYBOOK_INK,
+            z=40,
+        )
+        elements.append(_timeline_element(
+            title_text_el,
+            total_frames,
+            enter_frame=0,
+            enter_anim=_text_reveal_anim(title_text, fps, min_seconds=0.9, max_seconds=1.8, chars_per_second=18.0),
+        ))
 
     # Clip to slide-rule limit; enter only after title TypeWriter finishes (max 1.8s + 0.2s buffer)
     subtitle_clipped = _clip_on_screen(subtitle_text, max_words=10)
@@ -848,7 +849,7 @@ def storybook_object_demo_scene(
     if accent_asset:
         accent = _place_element(
             "character_right",
-            _planned_rect(layout_rects, "accent", (int(cw * 0.68), int(ch * 0.33), int(cw * 0.14), int(ch * 0.10))),
+            _planned_rect(layout_rects, "accent", (int(cw * 0.60), int(ch * 0.25), int(cw * 0.28), int(ch * 0.22))),
             asset_path=accent_asset,
             color=_STORYBOOK_ROSE,
             scale=1.08,

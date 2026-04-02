@@ -51,7 +51,7 @@ from src.animation.scene_types import (
     worked_example_scene,
 )
 from src.animation.timeline import SceneTimeline, ElementTimeline
-from src.animation.ffmpeg_export import frames_to_video
+from src.animation.ffmpeg_export import frames_to_video  # noqa: F401 — kept for external callers
 from src.layout.element import LayoutElement
 from src.pipeline.scene_mapper import map_script_to_scenes
 from src.pipeline.script_parser import parse_script
@@ -137,6 +137,7 @@ _OBJECT_MOTION_HINTS = (
 _DEFAULT_TTS_VOICE = os.environ.get("SCIENCE_EDU_TTS_VOICE", "en-US-GuyNeural")
 _DEFAULT_TTS_RATE = os.environ.get("SCIENCE_EDU_TTS_RATE", "-4%")
 _DEFAULT_TTS_PITCH = os.environ.get("SCIENCE_EDU_TTS_PITCH", "+0Hz")
+_DEFAULT_TTS_PAUSE_MS = int(os.environ.get("SCIENCE_EDU_TTS_PAUSE_MS", "280"))
 
 
 # ---------------------------------------------------------------------------
@@ -155,6 +156,25 @@ def _vtt_timestamp_to_seconds(ts: str) -> float:
         return float(parts[0])
     except (ValueError, IndexError):
         return 0.0
+
+
+def _seconds_to_vtt_timestamp(seconds: float) -> str:
+    """Convert seconds to WebVTT timestamp (HH:MM:SS.mmm)."""
+    seconds = max(0.0, float(seconds))
+    h = int(seconds // 3600)
+    m = int((seconds % 3600) // 60)
+    s = int(seconds % 60)
+    ms = int(round((seconds - int(seconds)) * 1000))
+    if ms == 1000:
+        s += 1
+        ms = 0
+    if s == 60:
+        m += 1
+        s = 0
+    if m == 60:
+        h += 1
+        m = 0
+    return f"{h:02d}:{m:02d}:{s:02d}.{ms:03d}"
 
 
 def _parse_vtt_cues(vtt_path: str) -> list[tuple[float, float, str]]:
@@ -524,7 +544,220 @@ def _build_narration_text(script_path: str) -> str:
     return "\n\n".join(line for line in lines if line).strip()
 
 
+def _build_narration_blocks(script_path: str) -> list[dict[str, object]]:
+    """
+    Parse the raw markdown script into speech and pause blocks while preserving
+    line-level tone tags like [with energy], [slower], and [pause].
+    """
+    raw_text = Path(script_path).read_text(encoding="utf-8")
+    desc_idx = re.search(r"^##\s+Description\s*$", raw_text, re.MULTILINE)
+    if desc_idx:
+        raw_text = raw_text[: desc_idx.start()]
+
+    blocks: list[dict[str, object]] = []
+    in_visual = False
+
+    for raw_line in raw_text.splitlines():
+        stripped = raw_line.strip()
+        if not stripped or stripped == "---":
+            continue
+        if in_visual:
+            if stripped.endswith("]") or stripped == "]":
+                in_visual = False
+            continue
+        if stripped.startswith("#"):
+            continue
+        if re.match(r"^\[Visual:\s*", stripped, re.IGNORECASE):
+            if not stripped.endswith("]"):
+                in_visual = True
+            continue
+
+        tone_match = re.match(r"^\[(?P<tone>[a-zA-Z ]+)\]\s*(?P<rest>.*)$", stripped)
+        if tone_match:
+            tone = tone_match.group("tone").strip().lower()
+            rest = tone_match.group("rest").strip()
+            if tone == "pause" and not rest:
+                blocks.append({"kind": "pause", "duration_ms": 650})
+                continue
+            cleaned = re.sub(r"\*+", "", rest).strip()
+            if cleaned:
+                blocks.append({"kind": "speech", "tone": tone, "text": cleaned})
+            continue
+
+        cleaned = re.sub(r"\*+", "", stripped).strip()
+        if cleaned:
+            blocks.append({"kind": "speech", "tone": "neutral", "text": cleaned})
+
+    return blocks
+
+
+def _rate_with_delta(base_rate: str, delta_pct: int) -> str:
+    match = re.match(r"([+-]?\d+)%$", base_rate.strip())
+    if not match:
+        return f"{delta_pct:+d}%"
+    value = int(match.group(1)) + delta_pct
+    return f"{value:+d}%"
+
+
+def _pitch_with_delta(base_pitch: str, delta_hz: int) -> str:
+    match = re.match(r"([+-]?\d+)Hz$", base_pitch.strip(), re.IGNORECASE)
+    if not match:
+        return f"{delta_hz:+d}Hz"
+    value = int(match.group(1)) + delta_hz
+    return f"{value:+d}Hz"
+
+
+def _tts_style_for_tone(tone: str, base_rate: str, base_pitch: str) -> tuple[str, str]:
+    """Map simple script tone tags to slightly more expressive TTS settings."""
+    t = (tone or "").lower()
+    if "energy" in t or "intensity" in t:
+        return _rate_with_delta(base_rate, 5), _pitch_with_delta(base_pitch, 8)
+    if "slower" in t or "reverence" in t:
+        return _rate_with_delta(base_rate, -10), _pitch_with_delta(base_pitch, -8)
+    if "pause" in t:
+        return _rate_with_delta(base_rate, -8), _pitch_with_delta(base_pitch, -4)
+    return base_rate, base_pitch
+
+
+def _generate_silence_audio(output_path: Path, duration_ms: int) -> bool:
+    duration_s = max(duration_ms, 100) / 1000.0
+    cmd = [
+        "ffmpeg", "-y",
+        "-f", "lavfi",
+        "-i", "anullsrc=r=24000:cl=mono",
+        "-t", f"{duration_s:.3f}",
+        "-q:a", "9",
+        "-acodec", "libmp3lame",
+        str(output_path),
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    return result.returncode == 0 and output_path.is_file()
+
+
+def _concat_audio_files(input_paths: list[Path], output_path: Path) -> bool:
+    if not input_paths:
+        return False
+    list_path = output_path.with_suffix(".concat.txt")
+    try:
+        with open(list_path, "w", encoding="utf-8") as fh:
+            for path in input_paths:
+                fh.write(f"file '{path.resolve()}'\n")
+        cmd = [
+            "ffmpeg", "-y",
+            "-f", "concat", "-safe", "0",
+            "-i", str(list_path),
+            "-acodec", "libmp3lame",
+            "-q:a", "2",
+            str(output_path),
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        return result.returncode == 0 and output_path.is_file()
+    finally:
+        try:
+            list_path.unlink()
+        except OSError:
+            pass
+
+
+def _write_simple_vtt(cues: list[tuple[float, float, str]], output_path: Path) -> bool:
+    if not cues:
+        return False
+    try:
+        with open(output_path, "w", encoding="utf-8") as fh:
+            fh.write("WEBVTT\n\n")
+            for start, end, text in cues:
+                fh.write(f"{_seconds_to_vtt_timestamp(start)} --> {_seconds_to_vtt_timestamp(end)}\n")
+                fh.write(f"{text.strip()}\n\n")
+        return True
+    except OSError:
+        return False
+
+
+def _generate_expressive_tts_audio(
+    script_path: str,
+    *,
+    voice: str = _DEFAULT_TTS_VOICE,
+    rate: str = _DEFAULT_TTS_RATE,
+    pitch: str = _DEFAULT_TTS_PITCH,
+) -> str:
+    """
+    Generate narration block-by-block so pacing cues survive into the audio.
+    Falls back to the old whole-script TTS path if anything fails.
+    """
+    if os.environ.get("SCIENCE_EDU_TTS_DISABLE") == "1":
+        return ""
+
+    blocks = _build_narration_blocks(script_path)
+    speech_blocks = [b for b in blocks if b.get("kind") == "speech" and b.get("text")]
+    if not speech_blocks:
+        return ""
+
+    media_dir = _media_dir_for_script(script_path)
+    media_dir.mkdir(parents=True, exist_ok=True)
+    audio_path = media_dir / "narration.mp3"
+    subtitles_path = media_dir / "narration.vtt"
+
+    segment_files: list[Path] = []
+    subtitle_cues: list[tuple[float, float, str]] = []
+    current_time = 0.0
+
+    with tempfile.TemporaryDirectory(prefix="narration_blocks_") as temp_dir_str:
+        temp_dir = Path(temp_dir_str)
+
+        for idx, block in enumerate(blocks):
+            kind = str(block.get("kind", "speech"))
+            segment_file = temp_dir / f"seg_{idx:04d}.mp3"
+
+            if kind == "pause":
+                duration_ms = int(block.get("duration_ms", 650))
+                if not _generate_silence_audio(segment_file, duration_ms):
+                    return ""
+                segment_files.append(segment_file)
+                current_time += duration_ms / 1000.0
+                continue
+
+            text = str(block.get("text", "")).strip()
+            if not text:
+                continue
+
+            block_rate, block_pitch = _tts_style_for_tone(str(block.get("tone", "neutral")), rate, pitch)
+            cmd = [
+                "edge-tts",
+                "--text", text,
+                "--voice", voice,
+                f"--rate={block_rate}",
+                f"--pitch={block_pitch}",
+                "--write-media", str(segment_file),
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True)
+            if result.returncode != 0 or not segment_file.is_file():
+                log.warning("expressive edge-tts failed for %s: %s", script_path, result.stderr[-1000:])
+                return ""
+
+            duration = _get_media_duration_ffprobe(str(segment_file))
+            if duration <= 0:
+                duration = max(1.0, len(text.split()) / 2.7)
+
+            subtitle_cues.append((current_time, current_time + duration, text))
+            current_time += duration
+            segment_files.append(segment_file)
+
+            spacer_file = temp_dir / f"seg_{idx:04d}_gap.mp3"
+            if _generate_silence_audio(spacer_file, _DEFAULT_TTS_PAUSE_MS):
+                segment_files.append(spacer_file)
+                current_time += _DEFAULT_TTS_PAUSE_MS / 1000.0
+
+        if not _concat_audio_files(segment_files, audio_path):
+            return ""
+        _write_simple_vtt(subtitle_cues, subtitles_path)
+
+    return str(audio_path) if audio_path.is_file() else ""
+
+
 def _generate_tts_audio(script_path: str, *, voice: str = _DEFAULT_TTS_VOICE, rate: str = _DEFAULT_TTS_RATE, pitch: str = _DEFAULT_TTS_PITCH) -> str:
+    expressive = _generate_expressive_tts_audio(script_path, voice=voice, rate=rate, pitch=pitch)
+    if expressive:
+        return expressive
     if os.environ.get("SCIENCE_EDU_TTS_DISABLE") == "1":
         return ""
     narration_text = _build_narration_text(script_path)
@@ -621,12 +854,12 @@ def _mux_audio_into_video(video_path: str, audio_path: str, vtt_path: str = "") 
             esc = srt_path.replace("\\", "/").replace("'", "\\'").replace(":", "\\:")
             vf_parts.append(
                 f"subtitles='{esc}':force_style='"
-                "FontName=Arial,FontSize=26,"
+                "FontName=Arial,FontSize=22,"
                 "PrimaryColour=&H00FFFFFF,"
                 "OutlineColour=&H00000000,"
-                "BackColour=&H80000000,"
+                "BackColour=&HB4000000,"
                 "BorderStyle=4,Outline=1,Shadow=0,"
-                "Alignment=2,MarginV=40'"
+                "Alignment=2,MarginV=26'"
             )
         else:
             srt_path = ""
@@ -1073,7 +1306,7 @@ def build_scene_timeline(
         hero_el = _get_el(elements, "diagram")
         hero_asset = _asset(hero_el) or _animation_scene_fallback_asset(" ".join([_text(hl_el), subtitle]))
         return storybook_hook_title_card_scene(
-            title_text=_text(hl_el, "..."),
+            title_text=_text(hl_el, ""),
             subtitle_text=subtitle,
             badge_text=scene_dict.get("badge_text") or "",
             hero_asset=hero_asset,
@@ -1177,10 +1410,30 @@ def build_scene_timeline(
 # FFmpeg concat helper
 # ---------------------------------------------------------------------------
 
-def concat_scene_videos(scene_mp4s: list[str], output_path: str) -> str:
+def _get_video_duration(path: str) -> float:
+    """Return duration of a video file in seconds via ffprobe."""
+    cmd = [
+        "ffprobe", "-v", "error",
+        "-show_entries", "format=duration",
+        "-of", "default=noprint_wrappers=1:nokey=1",
+        path,
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    if result.returncode != 0:
+        raise RuntimeError(f"ffprobe failed on {path}: {result.stderr[:500]}")
+    return float(result.stdout.strip())
+
+
+def concat_scene_videos(
+    scene_mp4s: list[str],
+    output_path: str,
+    crossfade_duration: float = 0.5,
+) -> str:
     """
-    Concatenate a list of scene MP4 files into a single output MP4 using
-    FFmpeg's concat demuxer (lossless re-mux, no re-encode).
+    Concatenate scene MP4 files with crossfade transitions between them.
+
+    Uses FFmpeg's xfade filter to create smooth 0.5 s fade transitions.
+    Falls back to simple concat demuxer if only one scene or if xfade fails.
 
     Parameters
     ----------
@@ -1188,6 +1441,8 @@ def concat_scene_videos(scene_mp4s: list[str], output_path: str) -> str:
         Ordered list of MP4 file paths.
     output_path : str
         Destination MP4 path.
+    crossfade_duration : float
+        Duration of each crossfade transition in seconds (default 0.5).
 
     Returns
     -------
@@ -1200,7 +1455,97 @@ def concat_scene_videos(scene_mp4s: list[str], output_path: str) -> str:
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
 
-    # Write a temporary concat list file
+    # Single scene — just copy, no transitions needed
+    if len(scene_mp4s) == 1:
+        shutil.copy2(scene_mp4s[0], str(out))
+        return str(out.resolve())
+
+    # Two or more scenes — use chained xfade filters
+    try:
+        return _concat_with_xfade(scene_mp4s, str(out), crossfade_duration)
+    except Exception as exc:
+        log.warning("xfade concat failed (%s), falling back to simple concat", exc)
+        return _concat_simple(scene_mp4s, str(out))
+
+
+def _concat_with_xfade(
+    scene_mp4s: list[str], output_path: str, xfade_dur: float
+) -> str:
+    """Build an FFmpeg command with chained xfade filters for N inputs."""
+    n = len(scene_mp4s)
+
+    # Get durations for offset calculation
+    durations = [_get_video_duration(p) for p in scene_mp4s]
+
+    # Build input args
+    inputs: list[str] = []
+    for p in scene_mp4s:
+        inputs.extend(["-i", os.path.abspath(p)])
+
+    # Build chained xfade filter_complex
+    # For N clips we need N-1 xfade filters chained together.
+    # offset_i = sum of durations[0..i] - (i * xfade_dur)  (accumulated trim)
+    filter_parts: list[str] = []
+    accumulated_duration = durations[0]
+
+    for i in range(1, n):
+        offset = accumulated_duration - xfade_dur
+        if offset < 0:
+            offset = 0  # scene shorter than crossfade — clamp
+
+        src = "[0:v]" if i == 1 else f"[xf{i-1}]"
+        dst = f"[{i}:v]"
+        out_label = f"[xf{i}]" if i < n - 1 else "[vout]"
+
+        filter_parts.append(
+            f"{src}{dst}xfade=transition=fade:duration={xfade_dur}:offset={offset}{out_label}"
+        )
+
+        # Next offset accumulates this clip's duration minus the crossfade
+        accumulated_duration = offset + durations[i]
+
+    # Audio: amerge / amix for all inputs, or concat audio streams
+    # Use acrossfade for pairs, but for simplicity concat audio with afade
+    audio_parts: list[str] = []
+    audio_accumulated = durations[0]
+    for i in range(1, n):
+        offset = audio_accumulated - xfade_dur
+        if offset < 0:
+            offset = 0
+
+        src = "[0:a]" if i == 1 else f"[af{i-1}]"
+        dst = f"[{i}:a]"
+        out_label = f"[af{i}]" if i < n - 1 else "[aout]"
+
+        audio_parts.append(
+            f"{src}{dst}acrossfade=d={xfade_dur}:c1=tri:c2=tri{out_label}"
+        )
+        audio_accumulated = offset + durations[i]
+
+    filter_complex = ";".join(filter_parts + audio_parts)
+
+    cmd = ["ffmpeg", "-y"] + inputs + [
+        "-filter_complex", filter_complex,
+        "-map", "[vout]",
+        "-map", "[aout]",
+        "-c:v", "libx264", "-preset", "medium", "-crf", "23",
+        "-c:a", "aac", "-b:a", "192k",
+        "-movflags", "+faststart",
+        output_path,
+    ]
+    log.info("xfade cmd: %s", " ".join(cmd))
+
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+    if result.returncode != 0:
+        raise RuntimeError(
+            f"FFmpeg xfade failed (rc={result.returncode}):\n"
+            f"{result.stderr[-2000:]}"
+        )
+    return str(Path(output_path).resolve())
+
+
+def _concat_simple(scene_mp4s: list[str], output_path: str) -> str:
+    """Fallback: simple concat demuxer (no transitions, lossless)."""
     list_fd, list_path = tempfile.mkstemp(suffix=".txt", prefix="concat_")
     try:
         with os.fdopen(list_fd, "w") as fh:
@@ -1213,7 +1558,7 @@ def concat_scene_videos(scene_mp4s: list[str], output_path: str) -> str:
             "-safe", "0",
             "-i", list_path,
             "-c", "copy",
-            str(out),
+            output_path,
         ]
         result = subprocess.run(
             cmd, capture_output=True, text=True, timeout=300
@@ -1229,7 +1574,7 @@ def concat_scene_videos(scene_mp4s: list[str], output_path: str) -> str:
         except OSError:
             pass
 
-    return str(out.resolve())
+    return str(Path(output_path).resolve())
 
 
 # ---------------------------------------------------------------------------
@@ -1319,12 +1664,18 @@ def render_episode(
         scene_manifest = _load_scene_manifest(scenes_dir)
         force_set = set(force_scene_indices or [])
 
-        scene_mp4s: list[str] = []
-        for idx, scene_dict in enumerate(scenes):
+        # --- Parallel scene rendering ---
+        # Scenes are independent: render them concurrently with a thread pool.
+        # FFmpeg subprocesses release the GIL, so threads give real parallelism
+        # for the encoding step.  PIL operations also partially release GIL.
+        import datetime as _dt
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+
+        def _render_one_scene(idx_and_scene):
+            idx, scene_dict = idx_and_scene
             scene_id = scene_dict.get("scene_id", f"scene_{idx:04d}")
             persistent_mp4 = scenes_dir / f"scene_{idx:04d}.mp4"
             scene_hash = _scene_dict_hash(scene_dict)
-            frames_dir = str(work / f"frames_{idx:04d}")
             scene_mp4_tmp = str(work / f"scene_{idx:04d}.mp4")
 
             manifest_entry = scene_manifest.get(str(idx), {})
@@ -1336,8 +1687,7 @@ def render_episode(
 
             if can_skip:
                 _log(f"  [{idx+1}/{len(scenes)}] {scene_id} — cached ✓")
-                scene_mp4s.append(str(persistent_mp4))
-                continue
+                return idx, str(persistent_mp4), None
 
             _log(f"  [{idx+1}/{len(scenes)}] {scene_id}  "
                  f"template={scene_dict['template']}  "
@@ -1353,8 +1703,8 @@ def render_episode(
             if rendered_mp4 is None:
                 try:
                     timeline = build_scene_timeline(scene_dict, aspect_ratio=aspect_ratio, fps=fps)
-                    timeline.render_all(frames_dir, verbose=False)
-                    frames_to_video(frames_dir, scene_mp4_tmp, fps=fps, crf=crf)
+                    timeline.render_to_video(scene_mp4_tmp, fps=fps, crf=crf,
+                                             preset="fast", verbose=False)
                     rendered_mp4 = scene_mp4_tmp
                 except Exception as exc:
                     log.warning(
@@ -1367,15 +1717,31 @@ def render_episode(
 
             # Persist the scene MP4
             shutil.copy2(rendered_mp4, persistent_mp4)
-            scene_mp4s.append(str(persistent_mp4))
-            import datetime as _dt
-            scene_manifest[str(idx)] = {
+            manifest_info = {
                 "scene_id": scene_id,
                 "hash": scene_hash,
                 "template": scene_dict.get("template"),
                 "duration": scene_dict.get("duration"),
                 "rendered_at": _dt.datetime.utcnow().isoformat(),
             }
+            return idx, str(persistent_mp4), manifest_info
+
+        # Use up to 4 parallel workers (bounded by CPU cores / memory)
+        max_workers = min(4, len(scenes))
+        scene_results = [None] * len(scenes)
+
+        with ThreadPoolExecutor(max_workers=max_workers) as pool:
+            futures = {
+                pool.submit(_render_one_scene, (idx, sd)): idx
+                for idx, sd in enumerate(scenes)
+            }
+            for future in as_completed(futures):
+                idx, mp4_path, manifest_info = future.result()
+                scene_results[idx] = mp4_path
+                if manifest_info is not None:
+                    scene_manifest[str(idx)] = manifest_info
+
+        scene_mp4s = [r for r in scene_results if r is not None]
 
         _save_scene_manifest(scenes_dir, scene_manifest)
 
@@ -1417,10 +1783,8 @@ def _render_blank_scene(
         aspect_ratio=aspect_ratio,
         fps=fps,
     )
-    frames_dir = str(work / f"blank_frames_{idx:04d}")
     out_mp4    = str(work / f"blank_{idx:04d}.mp4")
-    blank.render_all(frames_dir, verbose=False)
-    frames_to_video(frames_dir, out_mp4, fps=fps, crf=crf)
+    blank.render_to_video(out_mp4, fps=fps, crf=crf, verbose=False)
     return out_mp4
 
 
