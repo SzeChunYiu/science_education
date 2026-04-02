@@ -68,9 +68,6 @@ from src.animation.scene_types import (
     storybook_outro_bridge_scene,
 )
 
-from src.animation.physics_diagrams import PhysicsDiagramRenderer
-from src.animation.circuit_diagrams import CircuitDiagramRenderer
-
 from src.animation.ffmpeg_export import (
     frames_to_video,
     check_ffmpeg,
@@ -116,8 +113,6 @@ __all__ = [
     "storybook_comparison_split_scene",
     "storybook_timeline_sequence_scene",
     "storybook_outro_bridge_scene",
-    "PhysicsDiagramRenderer",
-    "CircuitDiagramRenderer",
     # Export
     "frames_to_video",
     "check_ffmpeg",

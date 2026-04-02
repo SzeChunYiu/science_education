@@ -13,17 +13,6 @@ Mapping
 ~~~~~~~
 .. autofunction:: scene_mapper.map_script_to_scenes
 .. autoclass:: scene_mapper.SceneMapper
-
-Validation
-~~~~~~~~~~
-.. autofunction:: scene_validator.validate_scene_sequence
-.. autoclass:: scene_validator.ValidationReport
-.. autoclass:: scene_validator.ValidationIssue
-
-Batch processing
-~~~~~~~~~~~~~~~~
-.. autofunction:: batch_processor.process_episode
-.. autofunction:: batch_processor.process_all_episodes
 """
 
 from .script_parser import (
@@ -37,17 +26,6 @@ from .scene_mapper import (
     map_script_to_scenes,
 )
 
-from .scene_validator import (
-    ValidationReport,
-    ValidationIssue,
-    validate_scene_sequence,
-)
-
-from .batch_processor import (
-    process_episode,
-    process_all_episodes,
-)
-
 __all__ = [
     # Parsing
     "ParsedScript",
@@ -56,11 +34,4 @@ __all__ = [
     # Mapping
     "SceneMapper",
     "map_script_to_scenes",
-    # Validation
-    "ValidationReport",
-    "ValidationIssue",
-    "validate_scene_sequence",
-    # Batch
-    "process_episode",
-    "process_all_episodes",
 ]
