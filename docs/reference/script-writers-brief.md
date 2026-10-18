@@ -198,6 +198,37 @@ Full references go in a separate References section at the end of the script doc
 - Avoid passive voice in narration. "Newton showed" not "it was shown by Newton."
 - Avoid "we" when it creates false inclusivity. Use "you" when addressing the viewer directly and the narrator's voice when explaining.
 
+### Storytelling rules that prevent "good information, dead script"
+
+The most common failure mode is not factual weakness. It is explanatory flatness: the script says correct things in the right order, but nothing feels urgent enough to listen to. A strong episode must feel like a sequence of reveals, not a sequence of notes.
+
+Required:
+
+- Start with a concrete problem, mistake, or contradiction in the first 20 seconds. Not "today we're talking about..." but a specific claim that sounds wrong, costly, or impossible.
+- Put a human being, experiment, or decision on stage early. "Galileo had a ramp and a problem" is stronger than "Galileo studied falling bodies."
+- Each major section must contain a turn:
+  a failed idea, a contradiction, a sharper question, a worked surprise, or a boundary where the current theory breaks.
+- No more than two explanatory paragraphs in a row without a narrative turn.
+- End sections on unfinished tension whenever possible. The viewer should feel the next section is necessary, not merely next.
+
+### Spoken-language rules
+
+Scripts are written to be heard, not silently read.
+
+- Prefer short spoken sentences over dense written sentences.
+- Vary sentence length deliberately. Use short lines for surprise and longer lines only when carrying an explanation.
+- Use emphasis sparingly. If every sentence sounds important, none of them do.
+- Read every paragraph out loud. If it sounds like an essay, rewrite it until it sounds like a person telling an intelligent story.
+- Replace generic significance language with specific stakes. Not "this was important for physics" but "this killed Aristotle's answer" or "this is the step where F = ma stops being true."
+
+### Anti-patterns that make scripts sound like generic AI content
+
+- naming a historical figure and then immediately summarising their views in textbook prose
+- long explanatory runs with no question, conflict, or reversal
+- abstract transitions like "this leads us to" or "another important concept is"
+- filler intensity words like "fascinating," "remarkable," or "incredible" without showing what makes the idea surprising
+- ending a section after explanation instead of after a new unresolved tension
+
 ---
 
 ## 9. Reference Episode: Newton's Laws, Episode 5

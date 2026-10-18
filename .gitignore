@@ -57,3 +57,7 @@ secrets.json
 .secrets/
 *.token.json
 oauth_token.json
+
+# manim render cache and test renders (sweep 2026-10-18)
+media/
+output/test_renders/

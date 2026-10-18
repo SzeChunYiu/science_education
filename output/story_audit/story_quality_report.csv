@@ -1,0 +1,190 @@
+path,title,words,narration_lines,turns_per_1000,hook_problem,hook_human,avg_line_words,max_line_words,long_line_count,score
+output/physics/07_quantum_field_theory/06_renormalization_group/ep3_renormalization/scripts/ep3_youtube_long.md,Renormalization — Absorbing the Infinite Into the Observable,1060,87,1.89,0,0,12.18,30,13,9.05
+output/physics/07_quantum_field_theory/05_path_integrals/ep2_feynmans_path_integral/scripts/ep2_youtube_long.md,Feynman's Path Integral — Deriving the Sum Over All Histories,1144,91,2.62,0,0,12.57,31,16,10.27
+output/physics/07_quantum_field_theory/05_path_integrals/ep3_propagators/scripts/ep3_youtube_long.md,Propagators — The Heartbeat of Quantum Field Theory,1362,109,2.94,0,0,12.5,42,17,11.17
+output/physics/06_mathematical_methods/01_vector_calculus/ep3_stokes_and_gauss_theorems/scripts/ep3_youtube_long.md,"The Miller and the Theorems — How Green, Stokes, and Gauss Connected Local to Global",1655,124,3.63,0,0,13.35,32,20,11.59
+output/physics/01_classical_mechanics/04_oscillations_waves/ep01_everything_oscillates/scripts/ep01_youtube_long.md,Everything Oscillates — The Hidden Rhythm of the Universe,1828,154,2.74,0,0,11.87,30,15,11.74
+output/physics/01_classical_mechanics/04_oscillations_waves/ep05_wave_equation/scripts/ep05_youtube_long.md,The Wave Equation — Newton's Laws Applied to a String,1636,163,1.83,0,0,10.04,28,13,11.9
+output/physics/07_quantum_field_theory/05_path_integrals/ep5_connection_to_statistical_mechanics/scripts/ep5_youtube_long.md,Imaginary Time — How Quantum Field Theory and Statistical Mechanics Are the Same Theory,1308,115,3.06,0,0,11.37,30,13,13.7
+output/physics/07_quantum_field_theory/02_classical_field_theory/ep2_lagrangian_density/scripts/ep2_youtube_long.md,The Lagrangian Density — The Single Object That Contains All of Physics,1340,103,2.24,0,1,13.01,48,17,14.35
+output/physics/02_electromagnetism/04_em_waves_optics/ep2_polarization/scripts/ep2_youtube_long.md,Ep2 Youtube Long,1707,118,5.27,0,0,14.47,51,24,14.36
+output/physics/01_classical_mechanics/02_conservation_laws/ep04_work_and_the_work_energy_theorem/scripts/ep04_youtube_long.md,Work and the Work-Energy Theorem — The Physics of Getting Things Moving,1387,115,3.6,0,0,12.06,41,11,14.68
+output/physics/01_classical_mechanics/07_rigid_body_dynamics/ep02/scripts/ep02_youtube_long.md,The Parallel Axis Theorem and the Inertia Tensor,1518,136,3.95,0,0,11.16,27,17,16.08
+output/physics/02_electromagnetism/02_magnetostatics/ep02_oersteds_discovery/scripts/ep02_youtube_long.md,Ep02 Youtube Long,2220,156,6.76,0,0,14.23,52,37,17.2
+output/physics/04_quantum_mechanics/06_perturbation_theory/ep3_degenerate_perturbation/scripts/ep3_youtube_long.md,When the Denominator Hits Zero — Degenerate Perturbation Theory,1374,100,5.82,0,0,13.74,40,19,17.78
+output/physics/01_classical_mechanics/07_rigid_body_dynamics/ep01/scripts/ep01_youtube_long.md,What Makes a Body Rigid? — Angular Velocity and the Moment of Inertia,1792,138,6.14,0,0,12.99,37,24,19.04
+output/physics/01_classical_mechanics/03_gravity_orbits/ep07_why_the_moon_doesnt_fall/scripts/ep07_youtube_long.md,Why the Moon Doesn't Fall — Orbital Mechanics from First Principles,1528,149,4.58,0,0,10.26,49,18,19.09
+output/physics/01_classical_mechanics/04_oscillations_waves/ep02_pendulum_heartbeat/scripts/ep02_youtube_long.md,The Pendulum and the Heartbeat — How a Cathedral Chandelier Changed the World,1729,147,3.47,0,1,11.76,34,20,19.34
+output/physics/01_classical_mechanics/02_conservation_laws/ep03_the_living_force/scripts/ep03_youtube_long.md,The Living Force — Deriving Kinetic Energy from Scratch,1427,121,5.61,0,0,11.79,34,18,20.01
+output/physics/01_classical_mechanics/07_rigid_body_dynamics/ep03/scripts/ep03_youtube_long.md,Euler's Rotation Equations — And the Tumbling of Asymmetric Bodies,1561,142,5.12,0,0,10.99,47,15,20.13
+output/physics/01_classical_mechanics/05_lagrangian_mechanics/ep03_the_lagrangian/scripts/ep03_youtube_long.md,The Lagrangian — L = T − V and the Derivation of Everything,1828,170,5.47,0,0,10.75,37,21,20.61
+output/physics/05_relativity/01_special_relativity/ep2_four_vectors/scripts/ep2_youtube_long.md,Four-Vectors — The Natural Language of Spacetime,1352,123,5.18,0,0,10.99,37,11,20.89
+output/physics/01_classical_mechanics/02_conservation_laws/ep06_energy_you_cant_see/scripts/ep06_youtube_long.md,Energy You Can't See — Potential Energy and the Landscape of Motion,1499,125,6.0,0,0,11.99,31,17,21.07
+output/physics/01_classical_mechanics/06_hamiltonian_mechanics/ep06/scripts/ep06_youtube_long.md,The Hamilton-Jacobi Equation — Classical Mechanics Becomes a Wave,1230,118,4.88,0,0,10.42,27,9,21.09
+output/physics/06_mathematical_methods/02_differential_equations/ep3_separation_of_variables/scripts/ep3_youtube_long.md,Where Quantum Numbers Come From — Separation of Variables and the Logic of Discreteness,1665,121,7.21,0,0,13.76,43,23,21.31
+output/physics/01_classical_mechanics/02_conservation_laws/ep02_the_quantity_that_never_changes/scripts/ep02_youtube_long.md,The Quantity That Never Changes — Deriving Momentum Conservation,1638,145,6.11,0,0,11.3,33,23,21.45
+output/physics/05_relativity/02_general_relativity/ep2_curved_spacetime/scripts/ep2_youtube_long.md,Curved Spacetime — When Geometry Becomes Physics,1320,92,7.58,0,0,14.35,41,22,21.74
+output/physics/07_quantum_field_theory/01_why_qft/ep4_dirac_equation/scripts/ep4_youtube_long.md,The Dirac Equation — How One Man's Stubbornness Predicted Antimatter,1345,117,5.95,0,0,11.5,33,16,21.75
+output/physics/03_thermodynamics/03_statistical_mechanics_classical/ep1_counting_microstates/scripts/ep1_youtube_long.md,Ep1 Youtube Long,2019,159,6.93,0,0,12.7,51,22,22.13
+output/physics/01_classical_mechanics/05_lagrangian_mechanics/ep05_cyclic_coordinates/scripts/ep05_youtube_long.md,The Cyclic Coordinate — How Symmetry Creates Conservation Laws,1472,127,6.11,0,0,11.59,34,15,22.27
+output/physics/01_classical_mechanics/08_central_force_problems/ep03_orbit_equation/scripts/ep03_youtube_long.md,The Orbit Equation — Deriving Kepler's Ellipses from Newton's Law,1346,147,2.97,0,1,9.16,32,9,23.15
+output/physics/02_electromagnetism/03_maxwells_equations/ep7_hertz_experiment/scripts/ep7_youtube_long.md,Ep7 Youtube Long,1502,117,5.33,0,1,12.84,43,18,23.71
+output/physics/07_quantum_field_theory/06_renormalization_group/ep2_regularization/scripts/ep2_youtube_long.md,Regularization — How to Make Infinity Temporarily Finite,1132,87,7.07,0,0,13.01,37,11,23.74
+output/physics/05_relativity/02_general_relativity/ep1_equivalence_principle/scripts/ep1_youtube_long.md,The Happiest Thought — Einstein's Equivalence Principle,1493,113,6.03,0,1,13.21,47,27,23.94
+output/physics/06_mathematical_methods/01_vector_calculus/ep4_applications_em/scripts/ep4_youtube_long.md,Twenty Equations to Four — How Heaviside Read Maxwell's Mind,1532,126,5.22,0,1,12.16,40,20,24.04
+output/physics/01_classical_mechanics/02_conservation_laws/ep05_the_spinning_world/scripts/ep05_youtube_long.md,The Spinning World — Angular Momentum and Why Skaters Spin Faster,1410,123,7.09,0,0,11.46,33,21,24.48
+output/physics/02_electromagnetism/01_electrostatics/ep02_coulombs_law/scripts/ep02_youtube_long.md,Ep02 Youtube Long,2225,168,8.54,0,0,13.24,42,30,24.98
+output/physics/04_quantum_mechanics/05_identical_particles_atoms/ep2_pauli_exclusion_principle/scripts/ep2_youtube_long.md,The Rule Nobody Could Explain — Pauli and the Exclusion Principle,1680,125,8.33,0,0,13.44,40,24,24.98
+output/physics/04_quantum_mechanics/06_perturbation_theory/ep2_time_independent_perturbation/scripts/ep2_youtube_long.md,Rayleigh's 1878 Formula — How to Correct a Wrong Answer Systematically,1313,106,1.52,1,1,12.39,41,13,25.68
+output/physics/04_quantum_mechanics/05_identical_particles_atoms/ep3_helium_atom/scripts/ep3_youtube_long.md,Adding One Electron Breaks Everything — The Helium Atom,1327,114,5.28,0,1,11.64,33,14,25.83
+output/physics/07_quantum_field_theory/05_path_integrals/ep4_generating_functionals/scripts/ep4_youtube_long.md,Generating Functionals — The Master Equation of Quantum Field Theory,1173,86,4.26,1,0,13.64,33,15,25.84
+output/physics/03_thermodynamics/02_kinetic_theory/ep3_pressure_from_collisions/scripts/ep3_youtube_long.md,Ep3 Youtube Long,1411,136,4.96,0,1,10.38,28,17,26.21
+output/physics/03_thermodynamics/03_statistical_mechanics_classical/ep7_grand_canonical/scripts/ep7_youtube_long.md,Ep7 Youtube Long,1308,121,6.88,0,0,10.81,27,11,26.26
+output/physics/01_classical_mechanics/07_rigid_body_dynamics/ep04/scripts/ep04_youtube_long.md,"The Gyroscope — Precession, Nutation, and the Euler Angles",1532,127,7.83,0,0,12.06,35,18,26.31
+output/physics/01_classical_mechanics/02_conservation_laws/ep07_the_ice_rink_of_the_universe/scripts/ep07_youtube_long.md,The Ice Rink of the Universe — Noether's Theorem and Why Conservation Laws Exist,1800,153,7.78,0,0,11.76,41,18,26.56
+output/physics/03_thermodynamics/03_statistical_mechanics_classical/ep6_free_energy/scripts/ep6_youtube_long.md,Ep6 Youtube Long,1302,114,7.68,0,0,11.42,27,18,26.75
+output/physics/05_relativity/01_special_relativity/ep4_relativistic_energy_momentum/scripts/ep4_youtube_long.md,E = mc² — The Derivation Behind the Icon,1069,105,4.68,0,1,10.18,47,8,26.98
+output/physics/01_classical_mechanics/06_hamiltonian_mechanics/ep02/scripts/ep02_youtube_long.md,Hamilton's Equations — The Hidden Symmetry of Mechanics,1236,118,4.85,0,1,10.47,28,7,27.25
+output/physics/06_mathematical_methods/02_differential_equations/ep2_pdes_wave_heat_laplace/scripts/ep2_youtube_long.md,Rejected Twice — Fourier's Heat Equation and the Three Personalities of Physical PDEs,1509,108,3.31,1,1,13.97,54,23,27.33
+output/physics/01_classical_mechanics/04_oscillations_waves/ep03_friction_steals_energy/scripts/ep03_youtube_long.md,Friction Steals Energy — The Mathematics of How Oscillators Die,1601,165,6.87,0,0,9.7,26,13,27.48
+output/physics/07_quantum_field_theory/02_classical_field_theory/ep1_fields_as_dynamical_systems/scripts/ep1_youtube_long.md,Fields as Dynamical Systems — The Mechanics of Everything That Isn't a Particle,1431,95,4.19,1,1,15.06,33,25,28.14
+output/physics/04_quantum_mechanics/03_matrix_mechanics/ep2_dirac_notation/scripts/ep2_youtube_long.md,Dirac Notation,1293,168,6.19,0,0,7.7,29,13,28.24
+output/physics/01_classical_mechanics/04_oscillations_waves/ep04_push_right_moment/scripts/ep04_youtube_long.md,Push at the Right Moment — Resonance and Why Bridges Collapse,1514,132,7.93,0,0,11.47,48,9,28.77
+output/physics/07_quantum_field_theory/05_path_integrals/ep1_sum_over_histories/scripts/ep1_youtube_long.md,Sum Over Histories — Feynman's Radical Idea About What Particles Actually Do,1495,114,9.36,0,0,13.11,47,21,28.98
+output/physics/01_classical_mechanics/06_hamiltonian_mechanics/ep03/scripts/ep03_youtube_long.md,Phase Space — The Geometry of Mechanics,1328,112,8.28,0,0,11.86,38,10,29.15
+output/physics/01_classical_mechanics/01_newtons_laws/ep12_everything_connects/scripts/ep12_youtube_long.md,Everything Connects — Newton's Laws and the Landscape of Modern Physics,1865,167,8.58,0,0,11.17,40,19,29.65
+output/physics/01_classical_mechanics/03_gravity_orbits/ep03_the_ellipse/scripts/ep03_youtube_long.md,The Ellipse — Kepler's Eight-Year Obsession and the Law That Broke a Thousand Years of Circles,1527,124,7.2,0,1,12.31,40,18,30.07
+output/physics/01_classical_mechanics/07_rigid_body_dynamics/ep05/scripts/ep05_youtube_long.md,The Foucault Pendulum — How a Swinging Ball Proved the Earth Rotates,1645,149,8.51,0,0,11.04,40,16,30.08
+output/physics/01_classical_mechanics/05_lagrangian_mechanics/ep02_nature_is_lazy/scripts/ep02_youtube_long.md,Nature Is Lazy — The Principle of Stationary Action,1832,139,9.83,0,0,13.18,36,21,30.27
+output/physics/02_electromagnetism/03_maxwells_equations/ep1_faraday_induction/scripts/ep1_youtube_long.md,Ep1 Youtube Long,1694,124,8.26,0,1,13.66,56,25,30.32
+output/physics/04_quantum_mechanics/01_origins_quantum_theory/ep3_photoelectric_effect/scripts/ep3_youtube_long.md,When Light Kicks Out Electrons,1407,125,6.4,0,1,11.26,33,10,30.33
+output/physics/04_quantum_mechanics/04_angular_momentum_spin/ep5_addition_angular_momenta/scripts/ep5_youtube_long.md,Adding Angular Momenta,1222,142,7.36,0,0,8.61,28,14,30.35
+output/physics/07_quantum_field_theory/06_renormalization_group/ep1_infinities_in_qft/scripts/ep1_youtube_long.md,The Infinite Crisis — Why QED's First Calculations Gave Nonsense,1218,112,8.21,0,0,10.88,57,9,30.46
+output/physics/04_quantum_mechanics/04_angular_momentum_spin/ep3_stern_gerlach/scripts/ep3_youtube_long.md,The Stern-Gerlach Experiment,1162,104,8.61,0,0,11.17,32,14,30.48
+output/physics/01_classical_mechanics/02_conservation_laws/ep08_collisions_conservation_laws_in_action/scripts/ep08_youtube_long.md,Collisions: Conservation Laws in Action,1425,120,9.12,0,0,11.88,30,17,30.59
+output/physics/06_mathematical_methods/01_vector_calculus/ep2_line_and_surface_integrals/scripts/ep2_youtube_long.md,"Work Along Curves, Flux Through Surfaces — When Ordinary Integration Isn't Enough",1613,121,6.2,1,0,13.33,32,23,30.89
+output/physics/01_classical_mechanics/08_central_force_problems/ep05_rutherford_scattering/scripts/ep05_youtube_long.md,Rutherford Scattering,1446,114,9.68,0,0,12.68,29,18,30.99
+output/physics/01_classical_mechanics/01_newtons_laws/ep06_you_cannot_touch_without_being_touched/scripts/ep06_youtube_long.md,You Cannot Touch Without Being Touched — Newton's Third Law,1264,125,6.33,0,1,10.11,34,14,31.13
+output/physics/03_thermodynamics/01_classical_thermodynamics/ep5_second_law_entropy/scripts/ep5_youtube_long.md,Ep5 Youtube Long,1307,111,9.18,0,0,11.77,28,15,31.21
+output/physics/07_quantum_field_theory/06_renormalization_group/ep4_running_coupling_constants/scripts/ep4_youtube_long.md,Running Coupling Constants — Why α = 1/137 Is Not a Constant,1243,103,7.24,0,1,12.07,34,13,31.28
+output/physics/02_electromagnetism/01_electrostatics/ep01_ancient_static/scripts/ep01_youtube_long.md,Ep01 Youtube Long,2022,158,10.39,0,0,12.8,60,29,31.29
+output/physics/03_thermodynamics/03_statistical_mechanics_classical/ep3_microcanonical_ensemble/scripts/ep3_youtube_long.md,Ep3 Youtube Long,1317,114,9.11,0,0,11.55,30,14,31.46
+output/physics/04_quantum_mechanics/05_identical_particles_atoms/ep5_slater_determinants/scripts/ep5_youtube_long.md,"One Determinant to Rule Them All — Slater, Hartree, and Fock",1388,101,6.48,1,0,13.74,36,21,31.46
+output/physics/06_mathematical_methods/02_differential_equations/ep1_odes_in_mechanics/scripts/ep1_youtube_long.md,The Exponential Ansatz — How Euler Taught Physicists to Solve Newton's Second Law,1526,132,3.28,1,1,11.56,39,17,31.49
+output/physics/03_thermodynamics/02_kinetic_theory/ep1_atoms_as_billiard_balls/scripts/ep1_youtube_long.md,Ep1 Youtube Long,2036,171,6.39,1,0,11.91,40,29,32.54
+output/physics/02_electromagnetism/01_electrostatics/ep05_electric_potential/scripts/ep05_youtube_long.md,Ep05 Youtube Long,1403,124,9.27,0,0,11.31,32,12,32.56
+output/physics/01_classical_mechanics/05_lagrangian_mechanics/ep04_generalized_coordinates/scripts/ep04_youtube_long.md,Generalized Coordinates — The Superpower of Lagrangian Mechanics,1724,153,7.54,0,1,11.27,35,15,33.0
+output/physics/01_classical_mechanics/03_gravity_orbits/ep04_the_harmony_of_the_worlds/scripts/ep04_youtube_long.md,The Harmony of the Worlds — Kepler's Third Law and the Secret of Celestial Music,1426,125,7.71,0,1,11.41,46,17,33.02
+output/physics/05_relativity/01_special_relativity/ep5_electrodynamics_in_sr/scripts/ep5_youtube_long.md,Maxwell Already Knew — Electrodynamics in Special Relativity,1215,97,6.58,1,0,12.53,34,19,33.77
+output/physics/04_quantum_mechanics/02_wave_mechanics/ep1_schrodinger_equation/scripts/ep1_youtube_long.md,The Schrödinger Equation,1388,122,7.93,0,1,11.38,39,15,34.0
+output/physics/05_relativity/01_special_relativity/ep3_relativistic_mechanics/scripts/ep3_youtube_long.md,When F = ma Breaks — Relativistic Mechanics,1252,103,6.39,1,0,12.16,38,14,34.45
+output/physics/01_classical_mechanics/03_gravity_orbits/ep06_weighing_the_earth/scripts/ep06_youtube_long.md,Weighing the Earth — How Cavendish Measured Gravity in a Basement,1444,124,8.31,0,1,11.65,35,15,34.78
+output/physics/02_electromagnetism/05_special_relativity_em/ep4_einstein_postulates/scripts/ep4_youtube_long.md,Ep4 Youtube Long,1354,110,8.86,0,1,12.31,30,16,35.36
+output/physics/01_classical_mechanics/04_oscillations_waves/ep07_when_waves_meet/scripts/ep07_youtube_long.md,When Waves Meet,1280,103,10.94,0,0,12.43,28,16,35.41
+output/physics/01_classical_mechanics/06_hamiltonian_mechanics/ep07/scripts/ep07_youtube_long.md,The Bridge to Quantum Mechanics,1312,113,10.67,0,0,11.61,29,17,35.61
+output/physics/03_thermodynamics/02_kinetic_theory/ep2_maxwell_boltzmann_distribution/scripts/ep2_youtube_long.md,Ep2 Youtube Long,1374,131,8.01,0,1,10.49,31,13,35.78
+output/physics/02_electromagnetism/03_maxwells_equations/ep5_electromagnetic_waves/scripts/ep5_youtube_long.md,Ep5 Youtube Long,1531,138,8.49,0,1,11.09,33,17,35.79
+output/physics/02_electromagnetism/04_em_waves_optics/ep1_wave_solutions/scripts/ep1_youtube_long.md,Ep1 Youtube Long,1783,160,8.97,0,1,11.14,35,24,36.12
+output/physics/02_electromagnetism/03_maxwells_equations/ep6_speed_of_light/scripts/ep6_youtube_long.md,Ep6 Youtube Long,1541,126,9.09,0,1,12.23,35,16,36.13
+output/physics/04_quantum_mechanics/05_identical_particles_atoms/ep4_periodic_table/scripts/ep4_youtube_long.md,Why the Periodic Table Has the Shape It Does — Quantum Numbers and Chemistry,1638,118,12.21,0,0,13.88,41,20,36.6
+output/physics/02_electromagnetism/02_magnetostatics/ep04_amperes_law/scripts/ep04_youtube_long.md,Ep04 Youtube Long,1318,120,10.62,0,0,10.98,35,13,36.94
+output/physics/03_thermodynamics/01_classical_thermodynamics/ep2_zeroth_law/scripts/ep2_youtube_long.md,Ep2 Youtube Long,1477,113,12.19,0,0,13.07,42,24,37.06
+output/physics/01_classical_mechanics/08_central_force_problems/ep04_runge_lenz_vector/scripts/ep04_youtube_long.md,The Runge-Lenz Vector — The Hidden Symmetry of Kepler Orbits,1564,141,10.87,0,0,11.09,54,15,37.23
+output/physics/02_electromagnetism/01_electrostatics/ep03_electric_field/scripts/ep03_youtube_long.md,Ep03 Youtube Long,1531,118,9.8,0,1,12.97,52,15,37.38
+output/physics/01_classical_mechanics/06_hamiltonian_mechanics/ep05/scripts/ep05_youtube_long.md,Canonical Transformations — Choosing the Perfect Coordinates,1232,107,7.31,1,0,11.51,31,16,37.8
+output/physics/01_classical_mechanics/04_oscillations_waves/ep08_fouriers_madness/scripts/ep08_youtube_long.md,Fourier's Madness,2002,169,11.49,0,0,11.85,28,15,38.03
+output/physics/04_quantum_mechanics/02_wave_mechanics/ep4_harmonic_oscillator/scripts/ep4_youtube_long.md,The Quantum Harmonic Oscillator,1314,104,12.18,0,0,12.63,37,19,38.39
+output/physics/03_thermodynamics/05_phase_transitions/ep1_order_and_disorder/scripts/ep1_youtube_long.md,Ep1 Youtube Long,1300,115,11.54,0,0,11.3,30,18,38.49
+output/physics/02_electromagnetism/02_magnetostatics/ep01_lodestones/scripts/ep01_youtube_long.md,Ep01 Youtube Long,2222,146,14.4,0,0,15.22,60,38,38.6
+output/physics/05_relativity/01_special_relativity/ep1_spacetime_geometry/scripts/ep1_youtube_long.md,Minkowski's Stage — The Geometry That Replaced Space and Time,1529,134,9.81,0,1,11.41,36,21,38.71
+output/physics/06_mathematical_methods/01_vector_calculus/ep1_gradient_divergence_curl/scripts/ep1_youtube_long.md,"The Three Questions — How Gradient, Divergence, and Curl Describe Every Field in Nature",1861,131,7.52,1,1,14.21,54,29,38.73
+output/physics/07_quantum_field_theory/01_why_qft/ep5_antimatter_prediction/scripts/ep5_youtube_long.md,The Hole in the Sea — How Mathematics Predicted Antimatter,1471,118,10.2,0,1,12.47,36,17,38.99
+output/physics/01_classical_mechanics/05_lagrangian_mechanics/ep08_lagrangian_approach_to_everything/scripts/ep08_youtube_long.md,The Lagrangian Approach to Everything,1289,111,11.64,0,0,11.61,33,13,39.1
+output/physics/03_thermodynamics/04_statistical_mechanics_quantum/ep4_blackbody_radiation/scripts/ep4_youtube_long.md,Ep4 Youtube Long,1312,156,9.91,0,0,8.41,26,8,39.15
+output/physics/04_quantum_mechanics/03_matrix_mechanics/ep3_observables_operators/scripts/ep3_youtube_long.md,Observables as Operators,1238,195,8.89,0,0,6.35,28,6,39.27
+output/physics/02_electromagnetism/03_maxwells_equations/ep2_faradays_law/scripts/ep2_youtube_long.md,Ep2 Youtube Long,1809,125,8.29,1,1,14.47,45,28,40.81
+output/physics/01_classical_mechanics/05_lagrangian_mechanics/ep07_noethers_theorem/scripts/ep07_youtube_long.md,Noether's Theorem - The Full Story,1439,117,11.12,0,1,12.3,39,22,41.24
+output/physics/02_electromagnetism/02_magnetostatics/ep03_biot_savart/scripts/ep03_youtube_long.md,Ep03 Youtube Long,1433,127,8.37,1,0,11.28,30,15,41.48
+output/physics/03_thermodynamics/01_classical_thermodynamics/ep7_third_law/scripts/ep7_youtube_long.md,Ep7 Youtube Long,1339,103,13.44,0,0,13.0,40,19,41.68
+output/physics/01_classical_mechanics/03_gravity_orbits/ep05_the_apple_and_the_moon/scripts/ep05_youtube_long.md,The Apple and the Moon — Newton's Proof That Gravity Is Universal,1339,115,6.72,1,1,11.64,37,16,41.86
+output/physics/03_thermodynamics/03_statistical_mechanics_classical/ep2_boltzmann_entropy/scripts/ep2_youtube_long.md,Ep2 Youtube Long,1308,123,12.23,0,0,10.63,33,13,42.26
+output/physics/01_classical_mechanics/03_gravity_orbits/ep02_the_man_who_measured_the_sky/scripts/ep02_youtube_long.md,The Man Who Measured the Sky — Brahe's Data and Kepler's Inheritance,1218,99,13.14,0,0,12.3,35,15,42.33
+output/physics/01_classical_mechanics/08_central_force_problems/ep01_two_body_problem/scripts/ep01_youtube_long.md,The Two-Body Problem — Why Two Gravitating Objects Can Be Solved Exactly,1598,155,12.52,0,0,10.31,42,17,42.96
+output/physics/04_quantum_mechanics/06_perturbation_theory/ep1_why_exact_solutions_run_out/scripts/ep1_youtube_long.md,The Two Quantum Systems Physics Can Actually Solve,1405,94,14.95,0,0,14.95,42,22,43.01
+output/physics/02_electromagnetism/01_electrostatics/ep04_gauss_law/scripts/ep04_youtube_long.md,Ep04 Youtube Long,1430,127,9.09,1,0,11.26,34,18,43.21
+output/physics/01_classical_mechanics/04_oscillations_waves/ep06_standing_waves_harmonics/scripts/ep06_youtube_long.md,Standing Waves and Harmonics,1356,127,12.54,0,0,10.68,31,12,43.26
+output/physics/02_electromagnetism/05_special_relativity_em/ep2_michelson_morley/scripts/ep2_youtube_long.md,Ep2 Youtube Long,1603,128,13.72,0,0,12.52,34,18,43.34
+output/physics/03_thermodynamics/04_statistical_mechanics_quantum/ep2_bose_einstein_statistics/scripts/ep2_youtube_long.md,Ep2 Youtube Long,1328,149,9.79,0,1,8.91,35,13,43.34
+output/physics/02_electromagnetism/03_maxwells_equations/ep4_maxwells_equations_unified/scripts/ep4_youtube_long.md,Ep4 Youtube Long,1468,146,10.22,0,1,10.05,27,8,43.78
+output/physics/04_quantum_mechanics/01_origins_quantum_theory/ep1_blackbody_catastrophe/scripts/ep1_youtube_long.md,The Ultraviolet Catastrophe,1439,126,9.03,1,0,11.42,29,11,43.86
+output/physics/04_quantum_mechanics/05_identical_particles_atoms/ep1_indistinguishability/scripts/ep1_youtube_long.md,The Particles That Cannot Be Told Apart — Indistinguishability in Quantum Mechanics,1433,135,9.07,1,0,10.61,54,18,44.05
+output/physics/02_electromagnetism/04_em_waves_optics/ep5_interference_coherence/scripts/ep5_youtube_long.md,Ep5 Youtube Long,1450,121,7.59,1,1,11.98,33,15,44.13
+output/physics/01_classical_mechanics/01_newtons_laws/ep05_what_newton_actually_wrote/scripts/ep05_youtube_long.md,What Newton Actually Wrote — The Real Second Law,1511,137,11.25,0,1,11.03,28,16,44.31
+output/physics/04_quantum_mechanics/02_wave_mechanics/ep3_particle_in_a_box/scripts/ep3_youtube_long.md,The Particle in a Box,1250,129,8.0,1,0,9.69,41,3,44.38
+output/physics/04_quantum_mechanics/03_matrix_mechanics/ep5_uncertainty_principle/scripts/ep5_youtube_long.md,The Uncertainty Principle,1210,152,9.92,0,1,7.96,30,15,44.76
+output/physics/03_thermodynamics/04_statistical_mechanics_quantum/ep5_bose_einstein_condensation/scripts/ep5_youtube_long.md,Ep5 Youtube Long,1311,117,11.44,0,1,11.21,38,14,44.94
+output/physics/01_classical_mechanics/06_hamiltonian_mechanics/ep04/scripts/ep04_youtube_long.md,Poisson Brackets — The Algebra That Predicted Quantum Mechanics,1350,119,7.41,1,1,11.34,44,11,45.09
+output/physics/04_quantum_mechanics/04_angular_momentum_spin/ep6_clebsch_gordan/scripts/ep6_youtube_long.md,Clebsch-Gordan Coefficients,1216,144,8.22,1,0,8.44,43,12,45.45
+output/physics/04_quantum_mechanics/03_matrix_mechanics/ep4_commutators/scripts/ep4_youtube_long.md,Commutators,1227,177,11.41,0,0,6.93,26,9,45.57
+output/physics/01_classical_mechanics/03_gravity_orbits/ep08_the_shape_of_gravity/scripts/ep08_youtube_long.md,"The Shape of Gravity — Fields, Potentials, and the Mathematics Newton Left Us",1481,117,8.78,1,1,12.66,32,21,45.86
+output/physics/04_quantum_mechanics/01_origins_quantum_theory/ep5_de_broglie_waves/scripts/ep5_youtube_long.md,Matter Has Wavelength,1279,122,9.38,1,0,10.48,28,13,45.92
+output/physics/01_classical_mechanics/01_newtons_laws/ep03_the_law_nobody_knows/scripts/ep03_youtube_long.md,The Law Nobody Knows Is a Law — Newton's First Law and the Structure of Space,1377,127,11.62,0,1,10.84,39,13,46.13
+output/physics/04_quantum_mechanics/01_origins_quantum_theory/ep6_compton_scattering/scripts/ep6_youtube_long.md,How X-Rays Learned to Recoil,1296,114,13.89,0,0,11.37,31,13,46.2
+output/physics/03_thermodynamics/01_classical_thermodynamics/ep1_heat_vs_temperature/scripts/ep1_youtube_long.md,Ep1 Youtube Long,1791,128,11.73,1,0,13.99,43,25,46.24
+output/physics/03_thermodynamics/04_statistical_mechanics_quantum/ep3_fermi_dirac_statistics/scripts/ep3_youtube_long.md,Ep3 Youtube Long,1301,164,12.3,0,0,7.93,27,11,46.54
+output/physics/02_electromagnetism/04_em_waves_optics/ep4_diffraction/scripts/ep4_youtube_long.md,Ep4 Youtube Long,1417,116,12.7,0,1,12.22,30,16,47.01
+output/physics/03_thermodynamics/03_statistical_mechanics_classical/ep4_canonical_ensemble/scripts/ep4_youtube_long.md,Ep4 Youtube Long,1307,113,14.54,0,0,11.57,29,16,47.42
+output/physics/03_thermodynamics/02_kinetic_theory/ep4_mean_free_path/scripts/ep4_youtube_long.md,Ep4 Youtube Long,1442,127,10.4,1,0,11.35,30,13,47.76
+output/physics/02_electromagnetism/01_electrostatics/ep06_conductors_capacitors/scripts/ep06_youtube_long.md,Ep06 Youtube Long,1414,135,12.02,0,1,10.47,31,12,48.0
+output/physics/04_quantum_mechanics/04_angular_momentum_spin/ep2_spherical_harmonics/scripts/ep2_youtube_long.md,Spherical Harmonics,1242,127,9.66,1,0,9.78,28,9,48.34
+output/physics/01_classical_mechanics/08_central_force_problems/ep02_effective_potential/scripts/ep02_youtube_long.md,Effective Potential — How a 3D Orbit Becomes a 1D Problem,1345,123,10.41,1,0,10.93,31,13,48.37
+output/physics/01_classical_mechanics/01_newtons_laws/ep07_the_recipe/scripts/ep07_youtube_long.md,The Recipe — How to Solve Any Mechanics Problem with Newton's Laws,1472,127,8.83,1,1,11.59,40,14,48.57
+output/physics/03_thermodynamics/01_classical_thermodynamics/ep6_free_energy/scripts/ep6_youtube_long.md,Ep6 Youtube Long,1329,118,15.05,0,0,11.26,32,20,48.78
+output/physics/02_electromagnetism/05_special_relativity_em/ep7_electrodynamics_sr/scripts/ep7_youtube_long.md,Ep7 Youtube Long,1431,112,13.98,0,1,12.78,39,20,49.44
+output/physics/04_quantum_mechanics/02_wave_mechanics/ep6_tunneling/scripts/ep6_youtube_long.md,Quantum Tunneling,1302,102,11.52,1,0,12.76,38,11,49.44
+output/physics/02_electromagnetism/05_special_relativity_em/ep6_e_equals_mc2/scripts/ep6_youtube_long.md,Ep6 Youtube Long,1442,122,15.26,0,0,11.82,29,14,49.52
+output/physics/04_quantum_mechanics/01_origins_quantum_theory/ep2_plancks_quantum/scripts/ep2_youtube_long.md,Planck's Quantized Oscillators,1402,116,13.55,0,1,12.09,34,16,49.74
+output/physics/02_electromagnetism/05_special_relativity_em/ep1_ether_problem/scripts/ep1_youtube_long.md,Ep1 Youtube Long,2363,158,12.27,1,1,14.96,39,41,50.13
+output/physics/03_thermodynamics/04_statistical_mechanics_quantum/ep6_fermi_gas_metals/scripts/ep6_youtube_long.md,Ep6 Youtube Long,1357,158,14.0,0,0,8.59,34,13,50.43
+output/physics/02_electromagnetism/05_special_relativity_em/ep5_time_dilation_length_contraction/scripts/ep5_youtube_long.md,Ep5 Youtube Long,1375,112,12.36,1,0,12.28,28,23,50.85
+output/physics/01_classical_mechanics/01_newtons_laws/ep11_why_the_laws_work/scripts/ep11_youtube_long.md,Why the Laws Work — Noether's Theorem and the Symmetries of Spacetime,1385,118,10.11,1,1,11.74,34,20,51.29
+output/physics/03_thermodynamics/03_statistical_mechanics_classical/ep5_partition_function/scripts/ep5_youtube_long.md,Ep5 Youtube Long,1282,113,15.6,0,0,11.35,28,9,51.97
+output/physics/03_thermodynamics/02_kinetic_theory/ep5_transport_phenomena/scripts/ep5_youtube_long.md,Ep5 Youtube Long,1399,134,13.58,0,1,10.44,39,14,52.43
+output/physics/04_quantum_mechanics/02_wave_mechanics/ep2_probability_interpretation/scripts/ep2_youtube_long.md,What the Wavefunction Means,1306,105,10.72,1,1,12.44,34,14,53.05
+output/physics/01_classical_mechanics/01_newtons_laws/ep04_the_quantity_of_motion/scripts/ep04_youtube_long.md,"The Quantity of Motion — Why Newton Started with Momentum, Not Force",1289,125,13.96,0,1,10.31,34,18,53.16
+output/physics/03_thermodynamics/01_classical_thermodynamics/ep3_first_law/scripts/ep3_youtube_long.md,Ep3 Youtube Long,1401,131,12.13,1,0,10.69,44,17,53.28
+output/physics/01_classical_mechanics/05_lagrangian_mechanics/ep06_constraints_and_multipliers/scripts/ep06_youtube_long.md,Constraints and Lagrange Multipliers,1566,122,11.49,1,1,12.84,28,22,53.61
+output/physics/04_quantum_mechanics/03_matrix_mechanics/ep1_heisenbergs_matrices/scripts/ep1_youtube_long.md,Heisenberg's Matrices,1364,145,9.53,1,1,9.41,33,12,54.02
+output/physics/04_quantum_mechanics/04_angular_momentum_spin/ep1_orbital_angular_momentum/scripts/ep1_youtube_long.md,Orbital Angular Momentum,1271,159,14.95,0,0,7.99,31,11,54.41
+output/physics/01_classical_mechanics/02_conservation_laws/ep01_why_is_anything_conserved/scripts/ep01_youtube_long.md,Why Is Anything Conserved? — The 200-Year War That Changed Physics,1958,172,17.88,0,0,11.38,42,28,55.89
+output/physics/03_thermodynamics/04_statistical_mechanics_quantum/ep1_identical_particles/scripts/ep1_youtube_long.md,Ep1 Youtube Long,1319,142,15.92,0,0,9.29,28,8,55.96
+output/physics/02_electromagnetism/02_magnetostatics/ep05_vector_potential/scripts/ep05_youtube_long.md,Ep05 Youtube Long,1357,120,13.26,1,0,11.31,32,15,56.11
+output/physics/03_thermodynamics/05_phase_transitions/ep2_ising_model/scripts/ep2_youtube_long.md,Ep2 Youtube Long,1293,137,12.37,1,0,9.44,39,12,56.51
+output/physics/03_thermodynamics/05_phase_transitions/ep4_critical_exponents/scripts/ep4_youtube_long.md,Ep4 Youtube Long,1262,153,11.89,1,0,8.25,27,12,56.71
+output/physics/01_classical_mechanics/05_lagrangian_mechanics/ep01_why_fma_isnt_enough/scripts/ep01_youtube_long.md,Why F=ma Isn't Enough — The Problem Newton Couldn't Solve,1784,156,12.33,1,1,11.44,49,27,57.34
+output/physics/01_classical_mechanics/07_rigid_body_dynamics/ep06/scripts/ep06_youtube_long.md,Chaos Begins Here,1275,99,14.9,1,0,12.88,37,18,58.38
+output/physics/01_classical_mechanics/01_newtons_laws/ep02_the_man_with_the_ramp/scripts/ep02_youtube_long.md,The Man with the Ramp — How Galileo Discovered the Law of Falling Bodies,1711,168,11.69,1,1,10.18,35,18,58.51
+output/physics/01_classical_mechanics/01_newtons_laws/ep10_the_quantum_boundary/scripts/ep10_youtube_long.md,The Quantum Boundary — Where Newton's Determinism Ends,1346,102,13.37,1,1,13.2,44,22,58.74
+output/physics/01_classical_mechanics/01_newtons_laws/ep09_where_newton_breaks/scripts/ep09_youtube_long.md,Where Newton Breaks — What Special Relativity Did to F=ma,1173,103,11.94,1,1,11.39,36,9,58.91
+output/physics/07_quantum_field_theory/01_why_qft/ep3_klein_gordon_equation/scripts/ep3_youtube_long.md,The Klein-Gordon Equation — The First Relativistic Wave Equation and Why It Failed,1189,116,11.77,1,1,10.25,31,12,59.57
+output/physics/02_electromagnetism/04_em_waves_optics/ep3_reflection_refraction/scripts/ep3_youtube_long.md,Ep3 Youtube Long,1355,114,13.28,1,1,11.89,36,18,60.91
+output/physics/01_classical_mechanics/03_gravity_orbits/ep09_where_newtons_gravity_breaks/scripts/ep09_youtube_long.md,Where Newton's Gravity Breaks,1337,100,18.7,0,1,13.37,36,17,61.13
+output/physics/01_classical_mechanics/03_gravity_orbits/ep01_the_perfect_circles/scripts/ep01_youtube_long.md,"The Perfect Circles — How a Wrong Model Ruled Astronomy for 1,400 Years",1353,114,15.52,1,0,11.87,39,17,61.8
+output/physics/03_thermodynamics/05_phase_transitions/ep3_mean_field_theory/scripts/ep3_youtube_long.md,Ep3 Youtube Long,1301,141,13.84,1,0,9.23,28,7,61.94
+output/physics/03_thermodynamics/01_classical_thermodynamics/ep4_heat_engines_carnot/scripts/ep4_youtube_long.md,Ep4 Youtube Long,1301,116,15.37,1,0,11.22,31,18,62.12
+output/physics/01_classical_mechanics/01_newtons_laws/ep08_friction_the_force_aristotle_couldnt_see/scripts/ep08_youtube_long.md,Friction — The Force Aristotle Couldn't See,1375,125,13.09,1,1,11.0,50,14,62.17
+output/physics/01_classical_mechanics/06_hamiltonian_mechanics/ep01/scripts/ep01_youtube_long.md,The Legendre Transform — How Hamilton Rewrote All of Mechanics,1431,118,13.98,1,1,12.13,49,16,62.95
+output/physics/04_quantum_mechanics/01_origins_quantum_theory/ep7_old_quantum_theory_fails/scripts/ep7_youtube_long.md,Why the Old Quantum Rules Broke Down,1314,111,19.03,0,1,11.84,35,16,63.43
+output/physics/07_quantum_field_theory/01_why_qft/ep1_particles_are_not_enough/scripts/ep1_youtube_long.md,Particles Are Not Enough — Why Quantum Mechanics Had to Be Rebuilt,1506,118,14.61,1,1,12.76,66,15,64.11
+output/physics/05_relativity/01_special_relativity/ep6_paradoxes_resolved/scripts/ep6_youtube_long.md,"The Twin Paradox, the Pole-Barn, and the Geometry That Fixes Everything",1361,108,16.9,1,0,12.6,29,17,64.91
+output/physics/02_electromagnetism/03_maxwells_equations/ep3_displacement_current/scripts/ep3_youtube_long.md,Ep3 Youtube Long,1368,127,14.62,1,1,10.77,36,13,67.23
+output/physics/04_quantum_mechanics/02_wave_mechanics/ep5_hydrogen_atom/scripts/ep5_youtube_long.md,The Hydrogen Atom,1303,104,15.35,1,1,12.53,35,9,67.56
+output/physics/04_quantum_mechanics/04_angular_momentum_spin/ep4_spin/scripts/ep4_youtube_long.md,Spin,1220,149,15.57,1,0,8.19,31,10,68.16
+output/physics/04_quantum_mechanics/01_origins_quantum_theory/ep4_bohrs_atom/scripts/ep4_youtube_long.md,Bohr's Jumping Electrons,1279,131,14.07,1,1,9.76,28,5,68.2
+output/physics/03_thermodynamics/05_phase_transitions/ep5_renormalization_group/scripts/ep5_youtube_long.md,Ep5 Youtube Long,1291,123,17.04,1,0,10.5,39,14,68.73
+output/physics/07_quantum_field_theory/01_why_qft/ep2_relativity_plus_qm_trouble/scripts/ep2_youtube_long.md,Relativity Plus Quantum Mechanics — Why They Don't Get Along,1335,108,16.48,1,1,12.36,52,15,70.28
+output/physics/01_classical_mechanics/01_newtons_laws/ep01_why_things_stop/scripts/ep01_youtube_long.md,"Why Things Stop — The 2,000-Year Mistake That Held Physics Back",997,92,20.06,1,0,10.84,29,13,71.28
+output/physics/02_electromagnetism/03_maxwells_equations/ep8_maxwell_to_modern_physics/scripts/ep8_youtube_long.md,Ep8 Youtube Long,1429,116,16.79,1,1,12.32,30,15,71.29
+output/physics/04_quantum_mechanics/03_matrix_mechanics/ep6_measurement_problem/scripts/ep6_youtube_long.md,The Measurement Problem,1181,128,30.48,1,0,9.23,31,9,74.13
+output/physics/01_classical_mechanics/08_central_force_problems/ep06_three_body_problem/scripts/ep06_youtube_long.md,Beyond Two Bodies,1314,104,22.07,1,1,12.63,37,15,74.46
+output/physics/02_electromagnetism/05_special_relativity_em/ep3_lorentz_transformations/scripts/ep3_youtube_long.md,Ep3 Youtube Long,1460,132,17.12,1,1,11.06,30,12,74.49
